@@ -4,19 +4,30 @@
 }
 
 h2 {
-    color: #674EA7
+    color: #674EA7;
+    text-align: center;
+    transform: translateX(10pt);
 }
 
-img {
+.logoImage {
     padding-top:0pt;
     margin-top:0pt;
     width: 20pt;
+    transform:translateY(2pt);
 }
 
 .HeaderStyle {
-    display: grid;
-    align-items: center;
-    /* justify-content: space-between; */
-    width: 100%;
-    background-color: pink;
+    background-color: white;
+}
+
+.profilePhoto {
+    float: right;
+    transform: translateY(30pt);
+    transform: translateX(-25pt);
+    width: 25pt;
+    background-color: white;
+}
+
+hr {
+    border: 1.5px solid #674EA7
 }
