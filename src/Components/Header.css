@@ -1,0 +1,22 @@
+.header {
+
+    color: "Purple"
+}
+
+h2 {
+    color: #674EA7
+}
+
+img {
+    padding-top:0pt;
+    margin-top:0pt;
+    width: 20pt;
+}
+
+.HeaderStyle {
+    display: grid;
+    align-items: center;
+    /* justify-content: space-between; */
+    width: 100%;
+    background-color: pink;
+}
