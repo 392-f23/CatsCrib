@@ -40,7 +40,7 @@ const Posting = ({ data, index }) => {
           {data.address.apt_number && `, Apt #${data.address.apt_number}`}
         </p>
         <div className="button-container">
-          <button onClick={buttonHandler}>More Info...</button>
+          <button className="more-info-btn" onClick={buttonHandler}>More Info...</button>
         </div>
         {moreInfo && (
           <MoreInfo data={data} closeHandler={buttonHandler}></MoreInfo>

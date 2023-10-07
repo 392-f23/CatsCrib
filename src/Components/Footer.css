@@ -11,13 +11,13 @@
   justify-content: space-between;
 }
 
-button {
+.footer-btn {
   background-color: transparent;
   border: 0px;
   margin: 0 45px;
 }
 
-button:hover {
+.footer-btn:hover {
   cursor: pointer;
 }
 

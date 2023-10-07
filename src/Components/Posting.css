@@ -42,7 +42,7 @@
   margin-top: 0px;
 }
 
-button {
+.more-info-btn {
   margin-top: 5px;
   padding: 5px 10px;
   font-size: 11px;
@@ -55,7 +55,7 @@ button {
   transition: background-color 0.3s ease;
 }
 
-button:hover {
+.more-info-btn:hover {
   background-color: darkgrey;
 }
 
