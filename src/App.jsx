@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './App.css';
 import Header from './Components/Header';
 import Search from './components/Search';
+import Footer from './Components/Footer';
 import Postings from './components/Postings';
 
 const App = () => {
@@ -10,6 +11,7 @@ const App = () => {
         <Header></Header>
         <Search></Search>
         <Postings></Postings>
+        <Footer></Footer>
     </div>
   );
 };

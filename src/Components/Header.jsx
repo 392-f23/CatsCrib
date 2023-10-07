@@ -3,16 +3,13 @@ import "./Header.css";
 
 const Header = () => {
   return (
-    <div className="HeaderStyle">
-      <div>
-        <h2>
-          CatsCrib{" "}
-          <img className="logoImage" src="src/Components/HeaderImage.png" />
-          <img className="profilePhoto" src="src/Components/UserImage.png" />
-        </h2>
+    <div className="header">
+      <div className="logo">
+        <img className="logoImage" src="icons/Home.png" />
+        <h2>CatsCrib</h2>
       </div>
-      <div>
-        <hr></hr>
+      <div className="profile">
+        <img className="profilePhoto" src="icons/UserImage.png" />
       </div>
     </div>
   );

@@ -1,28 +1,33 @@
-h2 {
-  color: #674ea7;
-  text-align: center;
-  transform: translateX(10pt);
+.header {
+  height: 8vh;
+  min-height: 35pt;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: #674ea7 solid 2pt;
+  padding: 0px 12px;
+  margin-bottom: 5px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 7px;
 }
 
 .logoImage {
   padding-top: 0pt;
   margin-top: 0pt;
   width: 20pt;
-  transform: translateY(2pt);
 }
 
-.HeaderStyle {
-  background-color: white;
+h2 {
+  margin: 0;
+  color: #674ea7;
+  text-align: center;
 }
 
 .profilePhoto {
-  float: right;
-  transform: translateY(30pt);
-  transform: translateX(-25pt);
   width: 25pt;
   background-color: white;
-}
-
-hr {
-  border: 1.5px solid #674ea7;
 }
