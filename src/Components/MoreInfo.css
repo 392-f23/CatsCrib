@@ -1,0 +1,46 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  max-height: 50%;
+  overflow-y: auto;
+  padding: 2.5px 10px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.close-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: transparent;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  color: grey;
+}
+
+.close-btn:hover {
+    background-color: transparent;
+    color: dimgray;
+}
+
+.title {
+    font-size: 15px;
+    color: purple;
+    font-weight: 700;
+}
