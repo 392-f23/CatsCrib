@@ -38,3 +38,9 @@
     background-color: transparent;
     color: dimgray;
 }
+
+.title {
+    font-size: 15px;
+    color: purple;
+    font-weight: 700;
+}
