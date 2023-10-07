@@ -3,12 +3,16 @@ import "./Footer.css";
 
 const Footer = () => {
   return (
-    <div className="FooterStyle">
-      <h2>
-        <img className="homePage" src="/HomePage.svg" alt="my image" onClick={null} />
-        <img className="post" src="Post.svg" alt="my image" onClick={null} />
-        <img className="favorite" src="Favorite.svg" alt="my image" onClick={null} />
-      </h2>
+    <div className="footer">
+      <button className="home-btn" onClick={null}>
+        <img src="icons/Home.png" />
+      </button>
+      <button className="post-btn" onClick={null}>
+        <img src="icons/Add.png" />
+      </button>
+      <button className="fave-btn" onClick={null}>
+        <img src="icons/Heart.png" />
+      </button>
     </div>
   );
 };
