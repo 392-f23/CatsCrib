@@ -1,5 +1,13 @@
 .postings {
-  padding: 15px;
+  padding: 0px 15px;
   display: flex;
   flex-wrap: wrap;
+}
+
+.results-shown{
+  padding: 5px 0;
+  margin: 0 0 5px 5px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #674ea7;
 }

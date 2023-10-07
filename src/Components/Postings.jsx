@@ -18,6 +18,7 @@ const Postings = () => {
 
   return (
     <div className="postings">
+      {data && <p className="results-shown">{data.length} RESULTS SHOWN</p>}
       {postings.map((data, index) => (
         <Posting key={index} data={data} index={index}></Posting>
       ))}

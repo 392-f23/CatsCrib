@@ -1,17 +1,24 @@
 import React from "react";
 import "./Footer.css";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
     <div className="footer">
-      <button className="footer-btn home-btn" onClick={null}>
-        <img src="icons/Home.png" />
+      <button className="footer-btn home-btn">
+        <Link className="nav-link" to="/">
+          <img src="icons/Home.png" />
+        </Link>
       </button>
-      <button className="footer-btn post-btn" onClick={null}>
-        <img src="icons/Add.png" />
+      <button className="footer-btn post-btn">
+        <Link className="nav-link" to="/">
+          <img src="icons/Add.png"/>
+        </Link>
       </button>
-      <button className="footer-btn fave-btn" onClick={null}>
-        <img src="icons/Heart.png" />
+      <button className="footer-btn fave-btn">
+        <Link className="nav-link" to="/">
+          <img src="icons/Heart.png" />
+        </Link>
       </button>
     </div>
   );

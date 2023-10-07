@@ -1,18 +1,14 @@
-import { useState } from 'react';
-import './App.css';
-import Header from './Components/Header';
-import Search from './components/Search';
-import Footer from './Components/Footer';
-import Postings from './components/Postings';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "./App.css";
+import Home from "./Home";
 
 const App = () => {
   return (
-    <div className="App">
-        <Header></Header>
-        <Search></Search>
-        <Postings></Postings>
-        <Footer></Footer>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </Router>
   );
 };
 
