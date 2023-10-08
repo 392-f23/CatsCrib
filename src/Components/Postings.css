@@ -1,13 +1,42 @@
 .postings {
-  padding: 0px 15px;
+  padding: 0px 12px;
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 70px;
 }
 
-.results-shown{
+.filter-and-sort {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 2px 0;
+}
+
+.results-shown {
   padding: 5px 0;
   margin: 0 0 5px 5px;
   font-size: 11px;
   font-weight: 700;
   color: #674ea7;
 }
+
+.filter-and-sort button {
+  margin: 0 5px 5px 0;
+  font-size: 11px;
+  font-weight: 700;
+  border: 0px;
+  border-radius: 10px;
+  padding: 2px 10px;
+  color: dimgray;
+  background-color: #e9e1fc;
+}
+
+.filter-and-sort button:hover {
+  cursor: pointer;
+}
+
+.filter-link {
+  text-decoration: none;
+  color: #674ea7;
+}
+

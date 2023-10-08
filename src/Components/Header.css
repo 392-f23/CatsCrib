@@ -7,6 +7,10 @@
   border-bottom: #674ea7 solid 2pt;
   padding: 0px 12px;
   margin-bottom: 5px;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 10000;
 }
 
 .logo {

@@ -1,6 +1,14 @@
 import "./MoreInfo.css";
 
 const MoreInfo = ({ data, closeHandler }) => {
+  const handleMailClick = () => {
+    window.location.href = "mailto:example2024@u.northwestern.edu";
+  };
+
+  const handleCallClick = () => {
+    window.location.href = "tel:+1234567890";
+  };
+
   return (
     <div className="overlay" onClick={closeHandler}>
       <div className="popup" onClick={(e) => e.stopPropagation()}>
@@ -8,10 +16,20 @@ const MoreInfo = ({ data, closeHandler }) => {
           X
         </button>
         <p className="title">More Info...</p>
-        <p>Subleaser 🧑: {data.user}</p>
+        <div className="subleaser">
+          <p>Subleaser 🧑: {data.user}</p>
+          <div className="user-buttons">
+            <button onClick={handleCallClick}>☎️</button>
+            <button onClick={handleMailClick} className="mail-button">
+              💌
+            </button>
+          </div>
+        </div>
         <p>Roommates 🛏️: {data.roommates}</p>
-        {data.type === 'house' && <p>Housemates 🏠: {data.housemates}</p>}
-        {data.type === 'apartment' && <p>Apartment-mates 🏠: {data.housemates}</p>}
+        {data.type === "house" && <p>Housemates 🏠: {data.housemates}</p>}
+        {data.type === "apartment" && (
+          <p>Apartment-mates 🏠: {data.housemates}</p>
+        )}
         <p>{data.more_info}</p>
       </div>
     </div>

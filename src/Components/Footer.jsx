@@ -11,7 +11,7 @@ const Footer = () => {
         </Link>
       </button>
       <button className="footer-btn post-btn">
-        <Link className="nav-link" to="/">
+        <Link className="nav-link" to="/make-a-post">
           <img src="icons/Add.png"/>
         </Link>
       </button>
