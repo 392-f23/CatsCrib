@@ -3,13 +3,13 @@ import Search from "./components/Search";
 import Footer from "./Components/Footer";
 import Postings from "./components/Postings";
 
-const Home = () => {
+const Home = ({ profile }) => {
   return (
     <div>
-      <Header></Header>
-      <Search></Search>
-      <Postings></Postings>
-      <Footer></Footer>
+      <Header />
+      <Search />
+      <Postings />
+      <Footer profile={profile} />
     </div>
   );
 };

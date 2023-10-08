@@ -1,6 +1,7 @@
 import { getDatabase, onValue, ref, update, push, set } from "firebase/database";
 import { useCallback, useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
+import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut as firebaseSignOut, sendEmailVerification } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAIYg7fp9VX-3R-Q47PCi8tZaJq7T00qtk",
@@ -16,6 +17,32 @@ const firebaseConfig = {
 const firebase = initializeApp(firebaseConfig);
 const database = getDatabase(firebase);
 
+// AUTHENTICATION UTILITIES
+export const signInWithGoogle = () => {
+  const auth = getAuth(firebase);
+  signInWithPopup(auth, new GoogleAuthProvider()).then((result) => {
+    // If the user is new or hasn't verified the email, send a verification email
+    console.log("email verified", result.user.emailVerified);
+    if (result.user && !result.user.emailVerified) {
+      sendEmailVerification(result.user);
+    }
+  });
+};
+
+
+export const signOut = () => firebaseSignOut(getAuth(firebase));
+
+export const useAuthState = () => {
+  const [user, setUser] = useState();
+  
+  useEffect(() => (
+    onAuthStateChanged(getAuth(firebase), setUser)
+  ), []);
+
+  return [user];
+};
+
+// DATABASE UTILITIES
 export const useDbData = (path) => {
   const [data, setData] = useState();
   const [error, setError] = useState(null);
@@ -61,9 +88,3 @@ export const useDbAdd = (path) => {
   );
   return [addData, result];
 };
-
-
-
-
-
-
