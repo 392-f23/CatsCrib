@@ -3,11 +3,13 @@ import "./MakeAPost.css";
 import { useDbAdd } from "../utilities/firebase";
 import { useNavigate } from 'react-router-dom';
 
-const MakeAPost = () => {
+const MakeAPost = (profile) => {
   const navigate = useNavigate();
   const [add, result] = useDbAdd(`/postings`);
+  const [selectedCategory, setSelectedCategory] = useState("sublet");
   const [formData, setFormData] = useState({
     user: "jacob34ZT", //change this based on the logged in user
+    category: "sublet",
     price: "",
     type: "",
     address: {
@@ -73,7 +75,7 @@ const MakeAPost = () => {
     }
     add(formData);
     setFormData({
-      user: "jacob34ZT",
+      user: profile?.email,
       price: "",
       type: "",
       address: {
@@ -94,6 +96,24 @@ const MakeAPost = () => {
   return (
     <div className="post-container">
       <h2>Make a posting</h2>
+      <div className="category-buttons">
+      <button 
+        className={selectedCategory === "sublet" ? "active" : ""} 
+        onClick={() => {
+          setSelectedCategory("sublet");
+          setFormData(prevState => ({ ...prevState, category: "sublet" }));
+        }}>
+        Sublet
+      </button>
+      <button 
+        className={selectedCategory === "roommate" ? "active" : ""} 
+        onClick={() => {
+          setSelectedCategory("roommate");
+          setFormData(prevState => ({ ...prevState, category: "roommate" }));
+        }}>
+        Roommate
+      </button>
+    </div>
       <form onSubmit={handleSubmit}>
         <p className="filter-tag">PRICE / MONTH ($)</p>
         <input

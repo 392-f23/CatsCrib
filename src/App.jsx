@@ -18,7 +18,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Home profile={user} />} />
-        <Route path="/make-a-post" element={<PostingPage />} />
+        <Route path="/make-a-post" element={<PostingPage profile={user}/>} />
       </Routes>
     </Router>
   );
