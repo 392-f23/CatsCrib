@@ -75,7 +75,7 @@ const MakeAPost = (profile) => {
     }
     add(formData);
     setFormData({
-      user: profile?.email,
+      user: "jacob34ZT",
       price: "",
       type: "",
       address: {
