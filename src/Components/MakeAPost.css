@@ -70,3 +70,16 @@
 .post-container button:hover {
   background-color: #674ea7;
 }
+
+.filter-tag {
+  margin: 5px 0px -5px 3px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #674ea7;
+  padding: 0;
+}
+
+.input-error {
+  border-color: pink;
+  background-color: #ffe0e0;
+}

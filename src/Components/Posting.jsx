@@ -18,6 +18,15 @@ const Posting = ({ data, index }) => {
     setMoreInfo((prev) => !prev);
   };
 
+  const convertDateFormat = (date) => {
+    const parts = date.split("-");
+    if (parts.length !== 3) return date;
+    const year = parts[0].slice(-2);
+    const month = parts[1];
+    const day = parts[2];
+    return `${month}/${day}/${year}`;
+  };
+
   return (
     <div key={index} className="posting">
       <div className="heart-button" onClick={heartHandler}>
@@ -33,14 +42,17 @@ const Posting = ({ data, index }) => {
         <p className="price">${data.price}/month</p>
         <p>🛏️ 1 room in a {data.unit}</p>
         <p>
-          📅 {data.start_date} - {data.end_date}
+          📅 {convertDateFormat(data.start_date)} -{" "}
+          {convertDateFormat(data.end_date)}
         </p>
         <p>
           📍 {data.address.street}, {data.address.city}, {data.address.state}
           {data.address.apt_number && `, Apt #${data.address.apt_number}`}
         </p>
         <div className="button-container">
-          <button className="more-info-btn" onClick={buttonHandler}>More Info...</button>
+          <button className="more-info-btn" onClick={buttonHandler}>
+            More Info...
+          </button>
         </div>
         {moreInfo && (
           <MoreInfo data={data} closeHandler={buttonHandler}></MoreInfo>

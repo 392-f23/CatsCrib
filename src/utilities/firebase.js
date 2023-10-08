@@ -1,4 +1,4 @@
-import { getDatabase, onValue, ref, update } from "firebase/database";
+import { getDatabase, onValue, ref, update, push, set } from "firebase/database";
 import { useCallback, useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
 
@@ -43,3 +43,27 @@ const makeResult = (error) => {
     error?.message || `Updated: ${new Date(timestamp).toLocaleString()}`;
   return { timestamp, error, message };
 };
+
+export const useDbAdd = (path) => {
+  const [result, setResult] = useState();
+  const makeResult = (error) => ({
+    success: !error,
+    error: error || null,
+  });
+  const addData = useCallback(
+    (value) => {
+      const newRef = push(ref(database, path));
+      set(newRef, value)
+        .then(() => setResult(makeResult()))
+        .catch((error) => setResult(makeResult(error)));
+    },
+    [database, path]
+  );
+  return [addData, result];
+};
+
+
+
+
+
+

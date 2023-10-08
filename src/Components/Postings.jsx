@@ -14,7 +14,8 @@ const Postings = () => {
   // everytime data changes or the page reloads the postings is resetted!
   useEffect(() => {
     if (data) {
-      setPostings(data);
+      setPostings(Object.values(data));
+      console.log(postings);
     }
   }, [data]);
 
