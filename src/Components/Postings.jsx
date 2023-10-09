@@ -45,16 +45,14 @@ const Postings = ({ isFavePage }) => {
   return (
     <div className="postings">
       <div className="category-buttons">
-        <button
-          className={selectedCategory === "sublet" ? "active" : ""}
-          onClick={() => setSelectedCategory("sublet")}
-        >
+        <button 
+          className={selectedCategory === "sublet" ? "active" : ""} 
+          onClick={() => setSelectedCategory("sublet")}>
           Sublet
         </button>
-        <button
-          className={selectedCategory === "roommate" ? "active" : ""}
-          onClick={() => setSelectedCategory("roommate")}
-        >
+        <button 
+          className={selectedCategory === "roommate" ? "active" : ""} 
+          onClick={() => setSelectedCategory("roommate")}>
           Roommate
         </button>
       </div>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./MakeAPost.css";
 import { useDbAdd } from "../utilities/firebase";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 const MakeAPost = (profile) => {
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ const MakeAPost = (profile) => {
     } else {
       setFormData({ ...formData, [e.target.name]: e.target.value });
     }
-    if (errors[e.target.name]) {
+    if(errors[e.target.name]) {
       const updatedErrors = { ...errors };
       delete updatedErrors[e.target.name];
       setErrors(updatedErrors);
@@ -90,35 +90,31 @@ const MakeAPost = (profile) => {
       images: [],
       more_info: "",
     });
-    navigate("/");
+    navigate('/');
   };
+
 
   return (
     <div className="post-container">
       <h2>Make a posting</h2>
-      <div className="category-buttons-make-a-post">
-        <button
-          className={selectedCategory === "sublet" ? "active" : ""}
-          onClick={() => {
-            setSelectedCategory("sublet");
-            setFormData((prevState) => ({ ...prevState, category: "sublet" }));
-          }}
-        >
-          Sublet
-        </button>
-        <button
-          className={selectedCategory === "roommate" ? "active" : ""}
-          onClick={() => {
-            setSelectedCategory("roommate");
-            setFormData((prevState) => ({
-              ...prevState,
-              category: "roommate",
-            }));
-          }}
-        >
-          Roommate
-        </button>
-      </div>
+      <div className="category-buttons">
+      <button 
+        className={selectedCategory === "sublet" ? "active" : ""} 
+        onClick={() => {
+          setSelectedCategory("sublet");
+          setFormData(prevState => ({ ...prevState, category: "sublet" }));
+        }}>
+        Sublet
+      </button>
+      <button 
+        className={selectedCategory === "roommate" ? "active" : ""} 
+        onClick={() => {
+          setSelectedCategory("roommate");
+          setFormData(prevState => ({ ...prevState, category: "roommate" }));
+        }}>
+        Roommate
+      </button>
+    </div>
       <form onSubmit={handleSubmit}>
         <p className="filter-tag">PRICE / MONTH ($)</p>
         <input
@@ -226,9 +222,7 @@ const MakeAPost = (profile) => {
           onChange={handleChange}
           className={`upload-images ${errors.more_info ? "input-error" : ""}`}
         ></textarea>
-        <button type="submit" className="submit">
-          Submit
-        </button>
+        <button type="submit">Submit</button>
       </form>
       {Object.keys(errors).length > 0 && (
         <div style={{ color: "red", marginTop: "10px" }}>
