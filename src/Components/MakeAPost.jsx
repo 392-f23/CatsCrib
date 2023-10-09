@@ -93,6 +93,7 @@ const MakeAPost = (profile) => {
     navigate('/');
   };
 
+
   return (
     <div className="post-container">
       <h2>Make a posting</h2>

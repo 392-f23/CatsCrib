@@ -3,6 +3,10 @@ import "./Footer.css";
 import { Link } from "react-router-dom";
 
 const Footer = ({ profile }) => {
+  // Helper function to check the email ending
+  const isNorthwesternEmail = (email) => {
+    return email?.endsWith('@u.northwestern.edu') || email?.endsWith('@northwestern.edu');
+  };
 
   return (
     <div className="footer">
@@ -12,7 +16,7 @@ const Footer = ({ profile }) => {
         </Link>
       </button>
 
-      {profile?.emailVerified && (
+      {profile?.emailVerified && isNorthwesternEmail(profile.email) && (
         <button className="footer-btn post-btn">
           <Link className="nav-link" to="/make-a-post">
             <img src="icons/Add.png" alt="Make a Post" />
@@ -27,6 +31,6 @@ const Footer = ({ profile }) => {
       </button>
     </div>
   );
-};
+}; 
 
 export default Footer;
