@@ -226,7 +226,9 @@ const MakeAPost = (profile) => {
           onChange={handleChange}
           className={`upload-images ${errors.more_info ? "input-error" : ""}`}
         ></textarea>
-        <button type="submit">Submit</button>
+        <button type="submit" className="submit">
+          Submit
+        </button>
       </form>
       {Object.keys(errors).length > 0 && (
         <div style={{ color: "red", marginTop: "10px" }}>
