@@ -84,13 +84,13 @@
   background-color: #ffe0e0;
 }
 
-.category-buttons {
+.category-buttons-make-a-post {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
 }
 
-.category-buttons button {
+.category-buttons-make-a-post button {
   background-color: white;
   border: 2px solid #674ea7;
   color: #674ea7;
@@ -101,7 +101,7 @@
   transition: background-color 0.3s, color 0.3s;
 }
 
-.category-buttons button.active {
+.category-buttons-make-a-post button.active {
   background-color: #674ea7;
   color: white;
 }
