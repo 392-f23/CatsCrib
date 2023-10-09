@@ -7,10 +7,9 @@ const Footer = ({ profile }) => {
   const isNorthwesternEmail = (email) => {
     return email?.endsWith('@u.northwestern.edu') || email?.endsWith('@northwestern.edu');
   };
-
   return (
     <div className="footer">
-      <button className="footer-btn home-btn">
+      <button onClick={homeHandler} className="footer-btn home-btn">
         <Link className="nav-link" to="/">
           <img src="icons/Home.png" alt="Home" />
         </Link>
@@ -24,10 +23,8 @@ const Footer = ({ profile }) => {
         </button>
       )}
 
-      <button className="footer-btn fave-btn">
-        <Link className="nav-link" to="/">
-          <img src="icons/Heart.png" alt="Favorite" />
-        </Link>
+      <button onClick={faveHandler} className="footer-btn fave-btn">
+        <img src="icons/Heart.png" alt="Favorite" />
       </button>
     </div>
   );
