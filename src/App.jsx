@@ -2,8 +2,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./Home";
 import PostingPage from "./PostingPage";
-import { useProfile } from './utilities/profile';  // Adjust the path if it's different in your setup
-
+import { useProfile } from './utilities/profile'; 
+import ProfilePage from './Components/ProfilePage';  
 const App = () => {
   const [{ user, isAdmin, emailVerified }, profileLoading, profileError] = useProfile();
 
@@ -19,6 +19,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home profile={user} />} />
         <Route path="/make-a-post" element={<PostingPage profile={user}/>} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </Router>
   );

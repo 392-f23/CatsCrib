@@ -8,12 +8,14 @@ const AuthButton = () => {
   
   if (user) {
     return (
-      <img 
-        className="profilePhoto" 
-        src={user.photoURL || "icons/UserImage.png"} 
-        alt="User Profile" 
-        onClick={signOut} 
-        title="Click to sign out" />
+      <NavLink to="/profile">
+        <img 
+          className="profilePhoto" 
+          src={user.photoURL || "icons/UserImage.png"} 
+          alt="User Profile" 
+          onClick={signOut} 
+          title="Click to sign out" />
+      </NavLink>
     );
   }
   return (
