@@ -2,7 +2,7 @@ import React from "react";
 import "./Footer.css";
 import { Link } from "react-router-dom";
 
-const Footer = ({ profile }) => {
+const Footer = ({ profile, faveHandler, homeHandler}) => {
   // Helper function to check the email ending
   const isNorthwesternEmail = (email) => {
     return email?.endsWith('@u.northwestern.edu') || email?.endsWith('@northwestern.edu');
