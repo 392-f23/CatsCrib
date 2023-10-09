@@ -1,26 +1,36 @@
-.ProfilePagePhoto {
-    width: 150pt;
-    margin-top: 20pt;
-    border-radius: 50%;
-    border: 5px solid #674ea7;
+.profile-content {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 0px;
+}
+.profile-page-photo {
+  width: 75pt;
+  margin: 25px 0px;
+  border-radius: 50%;
 }
 
-
-h2 {
-    margin-bottom: 0pt;
+.profile-info {
+  font-size: 15px;
+  text-align: left;
 }
 
-h3 {
-    margin-top: 0pt;
+.sign-out {
+  align-items: center;
+  font-size: 15px;
+  width: 120px;
+  padding: 8px;
+  border-radius: 20px;
+  border: 2px solid #674ea7;
+  font-weight: 700;
+  background-color: white;
 }
 
-.ProfileInfo {
-    text-align: left;
+.sign-out:hover {
+  background-color: #f2ecff;
 }
 
-.EmailLogo {
-    width: 22pt;
-    padding-right: 10pt;
-    padding-left: 5pt;
-    transform: translateY(7pt);
+.sign-out-nav {
+  text-decoration: none;
 }

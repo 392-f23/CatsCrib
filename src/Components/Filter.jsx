@@ -1,6 +1,6 @@
 import "./Filter.css";
 
-const Filter = ({closeHandler}) => {
+const Filter = ({ closeHandler }) => {
   return (
     <div className="overlay-filter" onClick={closeHandler}>
       <div className="popup-filter" onClick={(e) => e.stopPropagation()}>
@@ -17,9 +17,7 @@ const Filter = ({closeHandler}) => {
           <p>Price Max: </p>
           <p>Dates: </p>
         </div>
-        <button>
-          Submit
-        </button>
+        <button>Submit</button>
       </div>
     </div>
   );

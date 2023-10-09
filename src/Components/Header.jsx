@@ -13,24 +13,19 @@ const AuthButton = () => {
           className="profilePhoto" 
           src={user.photoURL || "icons/UserImage.png"} 
           alt="User Profile" 
-          onClick={signOut} 
           title="Click to sign out" />
       </NavLink>
     );
   }
+
   return (
-    <img 
-      className="profilePhoto" 
-      src="icons/UserImage.png" 
-      alt="Sign In" 
-      onClick={signInWithGoogle} 
-      title="Click to sign in with Google" />
+    <button className="login-button" onClick={signInWithGoogle} title="Click to sign in with Google">
+      Login
+    </button>
   );
 };
 
 const activation = ({isActive}) => isActive ? 'active' : 'inactive';
-
-
 
 const Header = () => {
   return (

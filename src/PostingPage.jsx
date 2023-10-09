@@ -6,7 +6,7 @@ const PostingPage = ({profile}) => {
   return (
     <div>
       <Header></Header>
-      <MakeAPost></MakeAPost>
+      <MakeAPost user={profile}></MakeAPost>
       <Footer profile={profile}></Footer>
     </div>
   );

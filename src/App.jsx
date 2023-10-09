@@ -20,7 +20,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home profile={user} />} />
         <Route path="/make-a-post" element={<PostingPage profile={user}/>} />
-        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/profile" element={<ProfilePage user={user} />} />
       </Routes>
     </Router>
   );

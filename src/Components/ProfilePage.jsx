@@ -1,23 +1,44 @@
 import React from "react";
 import "./ProfilePage.css";
 import Footer from "./Footer";
+import { signOut } from "../utilities/firebase";
+import { Link, useNavigate } from "react-router-dom";
 
+const ProfilePage = ({ user }) => {
+  const navigate = useNavigate();
+  if (!user) {
+    return null; // or you can return some default content
+  }
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+      navigate("/");
+    } catch (error) {
+      console.error("Failed to sign out:", error);
+    }
+  };
 
-const ProfilePage = () => {
-    return (
-        <div className="body">
-            <img className="ProfilePagePhoto" src="/icons/UserImage.png"></img>
-            <h2>Joshua Mahabir</h2>
-            <h3>@JoshFVO</h3>
-            <br></br>
-            <div className="ProfileInfo">
-            <p><img className="EmailLogo" src="/icons/EmailLogo.png"></img>JoshuaMahabir2024@u.northwestern.edu</p>
-            <p><img className="EmailLogo" src="/icons/PhoneLogo.png"/>718-749-6412</p>
-            <p><img className="EmailLogo" src="/icons/PronounLogo.png"/>He/Him</p>
-            </div>
-            <Footer></Footer>
+  return (
+    <div>
+      <div className="profile-content">
+        <img
+          className="profile-page-photo"
+          src={user.photoURL}
+          alt="User Profile"
+        />
+        <h2>{user.displayName}</h2>
+        <div className="profile-info">
+          <p>📧 {user.email}</p>
+          <p>☎️ 718-749-6412</p>
+          <p>⚥ He/Him</p>
         </div>
-    )
-}
+        <button className="sign-out" onClick={handleSignOut}>
+          Sign Out!
+        </button>
+      </div>
+      <Footer></Footer>
+    </div>
+  );
+};
 
-export default ProfilePage
+export default ProfilePage;
