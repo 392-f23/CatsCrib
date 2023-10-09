@@ -6,7 +6,7 @@ import Footer from "./Footer";
 const ProfilePage = () => {
     return (
         <div className="body">
-            <img className="ProfilePagePhoto" src="/icons/ProfilePagePhoto.jpeg"></img>
+            <img className="ProfilePagePhoto" src="/icons/UserImage.png"></img>
             <h2>Joshua Mahabir</h2>
             <h3>@JoshFVO</h3>
             <br></br>
