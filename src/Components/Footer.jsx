@@ -2,11 +2,10 @@ import React from "react";
 import "./Footer.css";
 import { Link } from "react-router-dom";
 
-const Footer = ({ profile }) => {
-
+const Footer = ({ profile, faveHandler, homeHandler }) => {
   return (
     <div className="footer">
-      <button className="footer-btn home-btn">
+      <button onClick={homeHandler} className="footer-btn home-btn">
         <Link className="nav-link" to="/">
           <img src="icons/Home.png" alt="Home" />
         </Link>
@@ -20,10 +19,8 @@ const Footer = ({ profile }) => {
         </button>
       )}
 
-      <button className="footer-btn fave-btn">
-        <Link className="nav-link" to="/">
-          <img src="icons/Heart.png" alt="Favorite" />
-        </Link>
+      <button onClick={faveHandler} className="footer-btn fave-btn">
+        <img src="icons/Heart.png" alt="Favorite" />
       </button>
     </div>
   );

@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
+import FavePage from "./FavePage";
 import Home from "./Home";
 import PostingPage from "./PostingPage";
 import { useProfile } from './utilities/profile';  // Adjust the path if it's different in your setup

@@ -1,17 +1,22 @@
 import "./Posting.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MoreInfo from "./MoreInfo";
 
-const Posting = ({ data, index }) => {
+const Posting = ({ data, index, toggleHeart, isFaved }) => {
   const [moreInfo, setMoreInfo] = useState(false);
-  const [heart, setHeart] = useState("🤍");
+  const [heart, setHeart] = useState(isFaved ? "💜" : "🤍");
+
+  useEffect(() => {
+    setHeart(isFaved ? "💜" : "🤍");
+  }, [isFaved]);
 
   const heartHandler = () => {
-    if (heart == "🤍") {
+    if (heart === "🤍") {
       setHeart("💜");
     } else {
       setHeart("🤍");
     }
+    toggleHeart(data);
   };
 
   const buttonHandler = () => {

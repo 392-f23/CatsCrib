@@ -2,12 +2,12 @@ import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import MakeAPost from "./components/MakeAPost";
 
-const PostingPage = () => {
+const PostingPage = ({profile}) => {
   return (
     <div>
       <Header></Header>
       <MakeAPost></MakeAPost>
-      <Footer></Footer>
+      <Footer profile={profile}></Footer>
     </div>
   );
 };
