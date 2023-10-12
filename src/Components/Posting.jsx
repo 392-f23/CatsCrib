@@ -1,5 +1,5 @@
 import "./Posting.css";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from 'react';
 import MoreInfo from "./MoreInfo";
 
 const Posting = ({ data, index, toggleHeart, isFaved }) => {
@@ -32,6 +32,24 @@ const Posting = ({ data, index, toggleHeart, isFaved }) => {
     return `${month}/${day}/${year}`;
   };
 
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const nextImage = () => {
+    if (currentImageIndex < data.images.length - 1) {
+      setCurrentImageIndex(prevIndex => prevIndex + 1);
+    } else {
+      setCurrentImageIndex(0);
+    }
+  };
+
+  const prevImage = () => {
+    if (currentImageIndex > 0) {
+      setCurrentImageIndex(prevIndex => prevIndex - 1);
+    } else {
+      setCurrentImageIndex(data.images.length - 1);
+    }
+  };
+
   return (
     <div key={index} className="posting">
       <div className="heart-button" onClick={heartHandler}>
@@ -39,7 +57,19 @@ const Posting = ({ data, index, toggleHeart, isFaved }) => {
       </div>
       <div className="posting-image">
         {data.images && data.images.length > 0 ? (
-          <img src={data.images[0]} alt="Listing Image" />
+          <>
+            <img src={data.images[currentImageIndex]} alt="Listing Image" />
+            {data.images.length > 1 && (
+              <>
+                <button className="carousel-btn prev" onClick={prevImage}>
+                  ❮
+                </button>
+                <button className="carousel-btn next" onClick={nextImage}>
+                  ❯
+                </button>
+              </>
+            )}
+          </>
         ) : (
           <img src="https://media.self.com/photos/630635c30b7f36ce816f374a/4:3/w_2240,c_limit/DAB03919-10470989.jpg" alt="Default Listing" />
         )}
