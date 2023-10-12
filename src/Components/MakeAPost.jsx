@@ -3,12 +3,12 @@ import "./MakeAPost.css";
 import { useDbAdd } from "../utilities/firebase";
 import { useNavigate } from "react-router-dom";
 
-const MakeAPost = ( {user} ) => {
+const MakeAPost = ({ user }) => {
   const navigate = useNavigate();
   const [add, result] = useDbAdd(`/postings`);
   const [selectedCategory, setSelectedCategory] = useState("sublet");
   const [formData, setFormData] = useState({
-    user: user.displayName.split(' ')[0],
+    user: user.displayName.split(" ")[0],
     category: "sublet",
     price: "",
     type: "",

@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import "./ProfilePage.css";
 import Footer from "./Footer";
 import { signOut } from "../utilities/firebase";
@@ -6,8 +6,10 @@ import { Link, useNavigate } from "react-router-dom";
 
 const ProfilePage = ({ user }) => {
   const navigate = useNavigate();
+  const [isEditable, setIsEditable] = useState(false);
+
   if (!user) {
-    return null; // or you can return some default content
+    return null;
   }
   const handleSignOut = async () => {
     try {
@@ -18,22 +20,98 @@ const ProfilePage = ({ user }) => {
     }
   };
 
+  const profileButtonHandler = () => {
+    setIsEditable(false);
+  };
+
   return (
-    <div>
+    <div className="profile-page">
       <div className="profile-content">
         <img
           className="profile-page-photo"
           src={user.photoURL}
           alt="User Profile"
         />
-        <h2>{user.displayName}</h2>
+        <h2 className="profile-name">{user.displayName}</h2>
         <div className="profile-info">
-          <p>📧 {user.email}</p>
-          <p>☎️ 718-749-6412</p>
-          <p>⚥ He/Him</p>
+          <button className="edit-btn" onClick={() => setIsEditable(true)}>
+            ✍
+          </button>
+          <p className="filter-tag-profile">EMAIL</p>
+          <p className="email-profile">{user.email}</p>
+          <p className="filter-tag-profile">PHONE NUMBER</p>
+          <input
+            placeholder="-"
+            type="tel"
+            id="phone"
+            name="phone"
+            pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+            readOnly={!isEditable}
+            className={isEditable ? "editable" : "not-editable"}
+          ></input>
+          <p className="filter-tag-profile">AGE</p>
+          <input
+            placeholder="-"
+            type="number"
+            id="age"
+            name="age"
+            readOnly={!isEditable}
+            className={isEditable ? "editable" : "not-editable"}
+          ></input>
+          <p className="filter-tag-profile">PRONOUNS</p>
+          <select
+            disabled={!isEditable}
+            name="pronouns"
+            className={
+              isEditable ? "editable dropdown" : "not-editable dropdown"
+            }
+          >
+            <option value="-">-</option>
+            <option value="She/Her">She/Her</option>
+            <option value="He/Him">He/Him</option>
+            <option value="They/Them">They/Them</option>
+            <option value="Other">Other</option>
+          </select>
+          <p className="filter-tag-profile">GENDER</p>
+          <select
+            disabled={!isEditable}
+            name="gender"
+            className={
+              isEditable ? "editable dropdown" : "not-editable dropdown"
+            }
+          >
+            <option value="-">-</option>
+            <option value="Female">Female</option>
+            <option value="Male">Male</option>
+            <option value="Other">Other</option>
+          </select>
+          <p className="filter-tag-profile">SCHOOL</p>
+          <select
+            disabled={!isEditable}
+            multiple
+            name="school"
+            className={
+              isEditable
+                ? "editable dropdown school"
+                : "not-editable dropdown school"
+            }
+          >
+            <option value="" disabled selected hidden></option>
+            <option value="McCormick">McCormick</option>
+            <option value="Weinberg">Weinberg</option>
+            <option value="Medill">Medill</option>
+            <option value="SoC">SoC</option>
+            <option value="SESP">SESP</option>
+            <option value="Kellogg">Kellogg</option>
+          </select>
+          {isEditable && (
+            <button className="save-btn" onClick={profileButtonHandler}>
+              Save
+            </button>
+          )}
         </div>
         <button className="sign-out" onClick={handleSignOut}>
-          Sign Out!
+          😔 Sign Out! 😔
         </button>
       </div>
       <Footer></Footer>
