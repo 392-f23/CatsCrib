@@ -38,10 +38,11 @@ const Posting = ({ data, index, toggleHeart, isFaved }) => {
         {heart}
       </div>
       <div className="posting-image">
-        <img
-          src="https://media.self.com/photos/630635c30b7f36ce816f374a/4:3/w_2240,c_limit/DAB03919-10470989.jpg"
-          alt="Listing Image"
-        />
+        {data.images && data.images.length > 0 ? (
+          <img src={data.images[0]} alt="Listing Image" />
+        ) : (
+          <img src="https://media.self.com/photos/630635c30b7f36ce816f374a/4:3/w_2240,c_limit/DAB03919-10470989.jpg" alt="Default Listing" />
+        )}
       </div>
       <div className="posting-info">
         <p className="price">${data.price}/month</p>
