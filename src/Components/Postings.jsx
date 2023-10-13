@@ -10,17 +10,18 @@ const Postings = ({ isFavePage }) => {
   const [isFiltering, setIsFiltering] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("sublet");
   const [faved, setFaved] = useState([]);
-  const [filterData, setFilterData] = useState({
+
+  const [filteredData, setFilteredData] = useState({
     Types: "",
     Roommates: "",
     Radius: "",
     Min: "",
     Max: "",
-    Dats: "",
+    Dates: "",
 });
 
-  const handleChildData = (dataFromChild) => {
-    setParentState(dataFromChild);
+  const handleFilterChange = (filterData) => {
+    setFilteredData(filterData)
   }
 
   // toggle heart component
@@ -84,7 +85,7 @@ const Postings = ({ isFavePage }) => {
             isFaved={faved.includes(data)}
           ></Posting>
         ))}
-      {isFiltering && <Filter props={handleChildData} closeHandler={filterHandler}></Filter>}
+      {isFiltering && <Filter closeHandler={filterHandler} handleFilterChange={handleFilterChange}></Filter>}
     </div>
   );
 };
