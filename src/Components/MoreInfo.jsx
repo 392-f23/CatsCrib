@@ -1,12 +1,15 @@
 import "./MoreInfo.css";
+import { useDbData } from "../utilities/firebase";
 
 const MoreInfo = ({ data, closeHandler }) => {
-  const handleMailClick = () => {
-    window.location.href = "mailto:example2024@u.northwestern.edu";
+  const [userData, loading, error] = useDbData(`/users/${data.user}`);
+
+  const handleMailClick = (email) => {
+    window.location.href = `mailto:${email}`;
   };
 
-  const handleCallClick = () => {
-    window.location.href = "tel:+1234567890";
+  const handleCallClick = (phone) => {
+    window.location.href = `tel:+${phone}`;
   };
 
   return (
@@ -17,10 +20,17 @@ const MoreInfo = ({ data, closeHandler }) => {
         </button>
         <p className="title">More Info...</p>
         <div className="subleaser">
-          <p>Subleaser 🧑: {data.user}</p>
+          <p>
+            Subleaser 🧑: {userData?.first} {userData?.last}
+          </p>
           <div className="user-buttons">
-            <button onClick={handleCallClick}>☎️</button>
-            <button onClick={handleMailClick} className="mail-button">
+            {userData?.phone && (
+              <button onClick={() => handleCallClick(userData?.phone)}>☎️</button>
+            )}
+            <button
+              onClick={() => handleMailClick(userData?.email)}
+              className="mail-button"
+            >
               💌
             </button>
           </div>

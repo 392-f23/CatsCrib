@@ -1,9 +1,26 @@
-import { getDatabase, onValue, ref, update, push, set } from "firebase/database";
+import {
+  getDatabase,
+  onValue,
+  ref,
+  update,
+  push,
+  set,
+  query,
+  orderByChild,
+  equalTo,
+  get,
+} from "firebase/database";
 import { useCallback, useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut as firebaseSignOut, sendEmailVerification } from 'firebase/auth';
+import {
+  getAuth,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithPopup,
+  signOut as firebaseSignOut,
+  sendEmailVerification,
+} from "firebase/auth";
 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage";
-
 
 const firebaseConfig = {
   apiKey: "AIzaSyAIYg7fp9VX-3R-Q47PCi8tZaJq7T00qtk",
@@ -24,7 +41,6 @@ export const signInWithGoogle = () => {
   const auth = getAuth(firebase);
   signInWithPopup(auth, new GoogleAuthProvider()).then((result) => {
     // If the user is new or hasn't verified the email, send a verification email
-    console.log("email verified", result.user.emailVerified);
     if (result.user && !result.user.emailVerified) {
       sendEmailVerification(result.user);
     }
@@ -39,17 +55,12 @@ export const uploadImage = async (file) => {
   const downloadURL = await getDownloadURL(imgRef);
   return downloadURL;
 };
-
-
-
 export const signOut = () => firebaseSignOut(getAuth(firebase));
 
 export const useAuthState = () => {
   const [user, setUser] = useState();
-  
-  useEffect(() => (
-    onAuthStateChanged(getAuth(firebase), setUser)
-  ), []);
+
+  useEffect(() => onAuthStateChanged(getAuth(firebase), setUser), []);
 
   return [user];
 };
@@ -58,7 +69,6 @@ export const useAuthState = () => {
 export const useDbData = (path) => {
   const [data, setData] = useState();
   const [error, setError] = useState(null);
-
   useEffect(
     () =>
       onValue(
@@ -72,7 +82,6 @@ export const useDbData = (path) => {
       ),
     [path]
   );
-
   return [data, error];
 };
 
@@ -83,20 +92,56 @@ const makeResult = (error) => {
   return { timestamp, error, message };
 };
 
-export const useDbAdd = (path) => {
+export const useDbUpdate = (path) => {
   const [result, setResult] = useState();
+  const updateData = useCallback(
+    (value) => {
+      update(ref(database, path), value)
+        .then(() => setResult(makeResult()))
+        .catch((error) => setResult(makeResult(error)));
+    },
+    [database, path]
+  );
+
+  return [updateData, result];
+};
+
+export const useDbExist = (path, value) => {
+  const [exists, setExists] = useState(null);
+  const [error, setError] = useState(null);
+  const checkExists = useCallback(() => {
+    let dbRef = ref(database, `${path}/${value}`);
+    get(dbRef)
+      .then((snapshot) => {
+        setExists(snapshot.exists());
+      })
+      .catch((err) => {
+        setError(err);
+        setExists(null);
+      });
+  }, [database, path, value]);
+  return [checkExists, exists, error];
+};
+
+export const useDbAdd = (path, index = null) => {
+  const [result, setResult] = useState(null);
   const makeResult = (error) => ({
     success: !error,
     error: error || null,
   });
   const addData = useCallback(
-    (value) => {
-      const newRef = push(ref(database, path));
-      set(newRef, value)
+    (data) => {
+      let dbRef;
+      if (index) {
+        dbRef = ref(database, `${path}/${index}`);
+      } else {
+        dbRef = push(ref(database, path));
+      }
+      set(dbRef, data)
         .then(() => setResult(makeResult()))
         .catch((error) => setResult(makeResult(error)));
     },
-    [database, path]
+    [database, path, index]
   );
   return [addData, result];
 };

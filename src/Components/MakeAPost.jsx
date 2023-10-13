@@ -3,12 +3,12 @@ import "./MakeAPost.css";
 import { useDbAdd, uploadImage } from "../utilities/firebase";
 import { useNavigate } from 'react-router-dom';
 
-const MakeAPost = (profile) => {
+const MakeAPost = ({ user }) => {
   const navigate = useNavigate();
   const [add, result] = useDbAdd(`/postings`);
   const [selectedCategory, setSelectedCategory] = useState("sublet");
   const [formData, setFormData] = useState({
-    user: "jacob34ZT", //change this based on the logged in user
+    user: user.uid,
     category: "sublet",
     price: "",
     type: "",
@@ -74,7 +74,7 @@ const MakeAPost = (profile) => {
     }
     add(formData);
     setFormData({
-      user: "jacob34ZT",
+      user: "",
       price: "",
       type: "",
       address: {
