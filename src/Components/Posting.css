@@ -72,3 +72,35 @@
   font-size: 15px; /* Adjust the font size as needed */
   cursor: pointer;
 }
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  font-size: 24px;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  padding: 8px 16px;
+  border-radius: 4px;
+}
+
+.carousel-btn:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.carousel-btn.prev {
+  left: 0;
+}
+
+.carousel-btn.next {
+  right: 0;
+}
+
+.posting-image {
+  position: relative;
+  flex: 1;
+  min-width: 50%;
+  height: 100%;
+}

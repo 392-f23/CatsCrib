@@ -20,6 +20,7 @@ import {
   signOut as firebaseSignOut,
   sendEmailVerification,
 } from "firebase/auth";
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAIYg7fp9VX-3R-Q47PCi8tZaJq7T00qtk",
@@ -46,6 +47,14 @@ export const signInWithGoogle = () => {
   });
 };
 
+const storage = getStorage(firebase);
+export const uploadImage = async (file) => {
+  const filePath = `images/${file.name}_${Date.now()}`;
+  const imgRef = storageRef(storage, filePath);
+  await uploadBytes(imgRef, file);
+  const downloadURL = await getDownloadURL(imgRef);
+  return downloadURL;
+};
 export const signOut = () => firebaseSignOut(getAuth(firebase));
 
 export const useAuthState = () => {
