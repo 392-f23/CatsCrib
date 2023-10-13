@@ -40,7 +40,6 @@ export const signInWithGoogle = () => {
   const auth = getAuth(firebase);
   signInWithPopup(auth, new GoogleAuthProvider()).then((result) => {
     // If the user is new or hasn't verified the email, send a verification email
-    console.log("email verified", result.user.emailVerified);
     if (result.user && !result.user.emailVerified) {
       sendEmailVerification(result.user);
     }
@@ -115,7 +114,7 @@ export const useDbExist = (path, value) => {
   return [checkExists, exists, error];
 };
 
-export const useDbAdd = (path, index) => {
+export const useDbAdd = (path, index = null) => {
   const [result, setResult] = useState(null);
   const makeResult = (error) => ({
     success: !error,
@@ -123,7 +122,12 @@ export const useDbAdd = (path, index) => {
   });
   const addData = useCallback(
     (data) => {
-      let dbRef = ref(database, `${path}/${index}`);
+      let dbRef;
+      if (index) {
+        dbRef = ref(database, `${path}/${index}`);
+      } else {
+        dbRef = push(ref(database, path));
+      }
       set(dbRef, data)
         .then(() => setResult(makeResult()))
         .catch((error) => setResult(makeResult(error)));

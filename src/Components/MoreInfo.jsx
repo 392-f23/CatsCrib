@@ -1,6 +1,10 @@
 import "./MoreInfo.css";
+import { useDbData } from "../utilities/firebase";
 
 const MoreInfo = ({ data, closeHandler }) => {
+
+  const [userData, loading, error] = useDbData(`/users/${data.user}`);
+
   const handleMailClick = () => {
     window.location.href = "mailto:example2024@u.northwestern.edu";
   };

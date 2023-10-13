@@ -22,7 +22,6 @@ const AuthButton = () => {
   useEffect(() => {
     if (user) {
       checkExists();
-      console.log(user.uid, exists)
     }
   }, [user]);
 
