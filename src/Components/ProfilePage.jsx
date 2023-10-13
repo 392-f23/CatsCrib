@@ -1,16 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./ProfilePage.css";
 import Footer from "./Footer";
-import { signOut } from "../utilities/firebase";
-import { Link, useNavigate } from "react-router-dom";
+import { signOut, useDbData, useDbUpdate } from "../utilities/firebase";
+import { useNavigate } from "react-router-dom";
 
 const ProfilePage = ({ user }) => {
   const navigate = useNavigate();
+  const [updateData, updateResult] = useDbUpdate(`/users/${user?.uid}`);
   const [isEditable, setIsEditable] = useState(false);
+  const [userData, loading, error] = useDbData(`/users/${user?.uid}`);
+  const [phone, setPhone] = useState(userData?.phone || "");
+  const [age, setAge] = useState(userData?.age || "");
+  const [pronouns, setPronouns] = useState(userData?.pronouns || "");
+  const [gender, setGender] = useState(userData?.gender || "");
+  const [school, setSchool] = useState(userData?.school || "");
+
+  useEffect(() => {
+    if (userData) {
+      setPhone(userData.phone || "");
+      setAge(userData.age || "");
+      setPronouns(userData.pronouns || "");
+      setGender(userData.gender || "");
+      setSchool(userData.school || []);
+    }
+  }, [userData]);
 
   if (!user) {
     return null;
   }
+
   const handleSignOut = async () => {
     try {
       await signOut();
@@ -22,6 +40,14 @@ const ProfilePage = ({ user }) => {
 
   const profileButtonHandler = () => {
     setIsEditable(false);
+    const updatedUserData = {
+      phone: phone,
+      age: age,
+      pronouns: pronouns,
+      gender: gender,
+      school: school,
+    };
+    updateData(updatedUserData);
   };
 
   return (
@@ -48,6 +74,8 @@ const ProfilePage = ({ user }) => {
             pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
             readOnly={!isEditable}
             className={isEditable ? "editable" : "not-editable"}
+            onChange={(e) => setPhone(e.target.value)}
+            value={phone}
           ></input>
           <p className="filter-tag-profile">AGE</p>
           <input
@@ -57,6 +85,8 @@ const ProfilePage = ({ user }) => {
             name="age"
             readOnly={!isEditable}
             className={isEditable ? "editable" : "not-editable"}
+            onChange={(e) => setAge(e.target.value)}
+            value={age}
           ></input>
           <p className="filter-tag-profile">PRONOUNS</p>
           <select
@@ -65,6 +95,8 @@ const ProfilePage = ({ user }) => {
             className={
               isEditable ? "editable dropdown" : "not-editable dropdown"
             }
+            onChange={(e) => setPronouns(e.target.value)}
+            value={pronouns}
           >
             <option value="-">-</option>
             <option value="She/Her">She/Her</option>
@@ -79,6 +111,8 @@ const ProfilePage = ({ user }) => {
             className={
               isEditable ? "editable dropdown" : "not-editable dropdown"
             }
+            onChange={(e) => setGender(e.target.value)}
+            value={gender}
           >
             <option value="-">-</option>
             <option value="Female">Female</option>
@@ -95,15 +129,33 @@ const ProfilePage = ({ user }) => {
                 ? "editable dropdown school"
                 : "not-editable dropdown school"
             }
+            onChange={(e) => {
+              const selectedSchools = Array.from(e.target.selectedOptions).map(
+                (option) => option.value
+              );
+              setSchool(selectedSchools);
+            }}
           >
-            <option value="" disabled selected hidden></option>
-            <option value="McCormick">McCormick</option>
-            <option value="Weinberg">Weinberg</option>
-            <option value="Medill">Medill</option>
-            <option value="SoC">SoC</option>
-            <option value="SESP">SESP</option>
-            <option value="Kellogg">Kellogg</option>
+            <option value="McCormick" selected={school.includes("McCormick")}>
+              McCormick
+            </option>
+            <option value="Weinberg" selected={school.includes("Weinberg")}>
+              Weinberg
+            </option>
+            <option value="Medill" selected={school.includes("Medill")}>
+              Medill
+            </option>
+            <option value="SoC" selected={school.includes("SoC")}>
+              SoC
+            </option>
+            <option value="SESP" selected={school.includes("SESP")}>
+              SESP
+            </option>
+            <option value="Kellogg" selected={school.includes("Kellogg")}>
+              Kellogg
+            </option>
           </select>
+
           {isEditable && (
             <button className="save-btn" onClick={profileButtonHandler}>
               Save

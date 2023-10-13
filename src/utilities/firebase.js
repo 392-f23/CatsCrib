@@ -7,8 +7,8 @@ import {
   set,
   query,
   orderByChild,
-  equalTo, 
-  get
+  equalTo,
+  get,
 } from "firebase/database";
 import { useCallback, useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
@@ -61,7 +61,6 @@ export const useAuthState = () => {
 export const useDbData = (path) => {
   const [data, setData] = useState();
   const [error, setError] = useState(null);
-
   useEffect(
     () =>
       onValue(
@@ -75,7 +74,6 @@ export const useDbData = (path) => {
       ),
     [path]
   );
-
   return [data, error];
 };
 
@@ -86,32 +84,26 @@ const makeResult = (error) => {
   return { timestamp, error, message };
 };
 
-export const useDbAdd = (path) => {
+export const useDbUpdate = (path) => {
   const [result, setResult] = useState();
-  const makeResult = (error) => ({
-    success: !error,
-    error: error || null,
-  });
-  const addData = useCallback(
+  const updateData = useCallback(
     (value) => {
-      const newRef = push(ref(database, path));
-      set(newRef, value)
+      update(ref(database, path), value)
         .then(() => setResult(makeResult()))
         .catch((error) => setResult(makeResult(error)));
     },
     [database, path]
   );
-  return [addData, result];
+
+  return [updateData, result];
 };
 
-export const useDbExist = (path, field, value) => {
-  const [exists, setExists] = useState(null); // null denotes not checked yet, true/false for result
+export const useDbExist = (path, value) => {
+  const [exists, setExists] = useState(null);
   const [error, setError] = useState(null);
-
   const checkExists = useCallback(() => {
-    const dbRef = ref(database, path);
-    const fieldValueQuery = query(dbRef, orderByChild(field), equalTo(value));
-    get(fieldValueQuery)
+    let dbRef = ref(database, `${path}/${value}`);
+    get(dbRef)
       .then((snapshot) => {
         setExists(snapshot.exists());
       })
@@ -119,7 +111,24 @@ export const useDbExist = (path, field, value) => {
         setError(err);
         setExists(null);
       });
-  }, [database, path, field, value]);
-
+  }, [database, path, value]);
   return [checkExists, exists, error];
+};
+
+export const useDbAdd = (path, index) => {
+  const [result, setResult] = useState(null);
+  const makeResult = (error) => ({
+    success: !error,
+    error: error || null,
+  });
+  const addData = useCallback(
+    (data) => {
+      let dbRef = ref(database, `${path}/${index}`);
+      set(dbRef, data)
+        .then(() => setResult(makeResult()))
+        .catch((error) => setResult(makeResult(error)));
+    },
+    [database, path, index]
+  );
+  return [addData, result];
 };

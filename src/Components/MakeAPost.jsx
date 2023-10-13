@@ -8,7 +8,7 @@ const MakeAPost = ({ user }) => {
   const [add, result] = useDbAdd(`/postings`);
   const [selectedCategory, setSelectedCategory] = useState("sublet");
   const [formData, setFormData] = useState({
-    user: user.displayName.split(" ")[0],
+    user: user.email,
     category: "sublet",
     price: "",
     type: "",
@@ -75,7 +75,7 @@ const MakeAPost = ({ user }) => {
     }
     add(formData);
     setFormData({
-      user: "jacob34ZT",
+      user: "",
       price: "",
       type: "",
       address: {

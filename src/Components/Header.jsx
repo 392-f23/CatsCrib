@@ -12,23 +12,24 @@ import {
 
 const AuthButton = () => {
   const [user] = useAuthState();
-  const [checkExists, exists, error] = useDbExist(
+  const [checkExists, exists, existsError] = useDbExist(
     "/users",
-    "email",
-    user?.email
+    user?.uid
   );
-  const [addData, addResult] = useDbAdd("/users");
-  const [dataAdded, setDataAdded] = useState(false);
+  const [addData, addResult, addError] = useDbAdd("/users", user?.uid);
+  const [isDataSet, setIsDataSet] = useState(false);
 
   useEffect(() => {
     if (user) {
       checkExists();
+      console.log(user.uid, exists)
     }
-  }, [user, exists, addData]);
+  }, [user]);
 
   useEffect(() => {
-    if (exists === false && user && ! dataAdded) {
+    if (exists == false && user && ! isDataSet) {
       const userData = {
+        uid: user.uid,
         email: user.email,
         first: user.displayName.split(" ")[0],
         last: user.displayName.split(" ")[1],
@@ -37,12 +38,12 @@ const AuthButton = () => {
         age: "",
         pronouns: "",
         gender: "",
-        school: ""
+        school: "",
       };
       addData(userData);
-      setDataAdded(true);
+      setIsDataSet(true)
     }
-  }, [user, exists, addData]);
+  });
 
   if (user) {
     return (
