@@ -11,11 +11,22 @@ const Filter = ({ closeHandler, props }) => {
       Max: "",
       Dats: "",
   });
-  console.log(filterData.Roommates)
+  console.log(filterData)
 
   const handleFilterChange = (event) => {
         setFilterData(event.target.value);
         props.sendDataToParent(event.target.value);
+  }
+
+  const clearFilter = () => {
+    setFilterData(prevState => ({...prevState, 
+      Types: "",
+      Roommates: "",
+      Radius: "",
+      Min: "",
+      Max: "",
+      Dats: "",
+    }))
   }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -48,6 +59,9 @@ const Filter = ({ closeHandler, props }) => {
         </button>
         <p className="filter-title">Filter</p>
         <div className="filters">
+          <p><button onClick={clearFilter}
+            style={selectedStyle}>Clear Filter</button>
+          </p>
           <p>Types: 
             <button onClick={() => {setTypeOption('House'); setFilterData(prevState => ({...prevState, Types: 'House'}))}}
             style={typeOption === 'House' ? selectedStyle : defaultStyle}>House</button>
