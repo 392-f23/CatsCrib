@@ -18,11 +18,11 @@ const Postings = ({ isFavePage }) => {
     Min: "",
     Max: "",
     Dates: "",
-});
+  });
 
   const handleFilterChange = (filterData) => {
-    setFilteredData(filterData)
-  }
+    setFilteredData(filterData);
+  };
 
   // toggle heart component
   const toggleHeart = (data) => {
@@ -58,14 +58,16 @@ const Postings = ({ isFavePage }) => {
   return (
     <div className="postings">
       <div className="category-buttons">
-        <button 
-          className={selectedCategory === "sublet" ? "active" : ""} 
-          onClick={() => setSelectedCategory("sublet")}>
+        <button
+          className={selectedCategory === "sublet" ? "active" : ""}
+          onClick={() => setSelectedCategory("sublet")}
+        >
           Sublet
         </button>
-        <button 
-          className={selectedCategory === "roommate" ? "active" : ""} 
-          onClick={() => setSelectedCategory("roommate")}>
+        <button
+          className={selectedCategory === "roommate" ? "active" : ""}
+          onClick={() => setSelectedCategory("roommate")}
+        >
           Roommate
         </button>
       </div>
@@ -85,7 +87,12 @@ const Postings = ({ isFavePage }) => {
             isFaved={faved.includes(data)}
           ></Posting>
         ))}
-      {isFiltering && <Filter closeHandler={filterHandler} handleFilterChange={handleFilterChange}></Filter>}
+      {isFiltering && (
+        <Filter
+          closeHandler={filterHandler}
+          handleFilterChange={handleFilterChange}
+        ></Filter>
+      )}
     </div>
   );
 };
