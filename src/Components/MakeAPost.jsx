@@ -96,7 +96,7 @@ const MakeAPost = ({ user }) => {
   return (
     <div className="post-container">
       <h2>Make a posting</h2>
-      <div className="category-buttons">
+      <div className="category-buttons-make-a-post">
       <button 
         className={selectedCategory === "sublet" ? "active" : ""} 
         onClick={() => {
@@ -221,7 +221,7 @@ const MakeAPost = ({ user }) => {
           onChange={handleChange}
           className={`upload-images ${errors.more_info ? "input-error" : ""}`}
         ></textarea>
-        <button type="submit">Submit</button>
+        <button type="submit" className="submit">Submit</button>
       </form>
       {Object.keys(errors).length > 0 && (
         <div style={{ color: "red", marginTop: "10px" }}>

@@ -10,7 +10,7 @@ import {
   equalTo,
   get,
 } from "firebase/database";
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
