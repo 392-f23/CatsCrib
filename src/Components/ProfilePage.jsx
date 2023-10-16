@@ -15,6 +15,26 @@ const ProfilePage = ({ user }) => {
   const [gender, setGender] = useState(userData?.gender || "");
   const [school, setSchool] = useState(userData?.school || "");
 
+  const userPostingsPath = `/postings`;
+  const [postingsData, postingsLoading, postingsError] = useDbData(userPostingsPath);
+  // console.log(postingsData);
+
+  const [selectedPosting, setSelectedPosting] = useState([]);
+
+
+  let user_postings = [];
+  if (postingsData && user) {
+    // Convert postingsData to an array of objects
+    const postingsArray = Object.values(postingsData);
+  
+    // Filter the postings based on the user field
+    user_postings = postingsArray.filter(posting => posting.user === user.uid);
+    // console.log(filteredPostings);
+  }
+
+
+  
+
   useEffect(() => {
     if (userData) {
       setPhone(userData.phone || "");
@@ -162,6 +182,25 @@ const ProfilePage = ({ user }) => {
             </button>
           )}
         </div>
+        <button className="my_posts" onClick={() => setSelectedPosting(user_postings)}>
+          My Posts
+        </button>
+        {selectedPosting.map((posting, index) => (
+          <div key={index} className="posting-card">
+            <p>Address: {posting.address.street}, {posting.address.city}, {posting.address.state}</p>
+            <p>Apt Number: {posting.apt_number}</p>
+            <div className="edit-buttons">
+      <button className="edit-button" onClick={() => handleEdit(posting)}>
+        Edit
+      </button>
+      <button className="remove-btn" onClick={() => handleRemove(posting)}>
+        Remove
+      </button>
+    </div>
+            </div>))}
+
+
+            
         <button className="sign-out" onClick={handleSignOut}>
           😔 Sign Out! 😔
         </button>

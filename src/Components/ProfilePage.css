@@ -100,6 +100,27 @@
   text-decoration: none;
 }
 
+.my_posts {
+  align-items: center;
+  font-size: 15px;
+  width: 150px;
+  padding: 8px;
+  border-radius: 20px;
+  font-weight: 700;
+  border: 0;
+  background-color: rgb(178, 136, 219);
+  color: rgb(62, 48, 101);
+}
+
+.my_posts:hover {
+  background-color: rgb(178, 136, 219);
+  color: white;
+}
+
+.my_posts-nav {
+  text-decoration: none;
+}
+
 .edit-btn {
   position: absolute;
   top: 7px;
