@@ -7,6 +7,9 @@
   transition: box-shadow 0.3s ease;
   padding: 10px;
   position: relative;
+  max-width: 400px;
+  margin-left: 2px;
+  margin-right: 2px;
 }
 
 .posting:hover {
