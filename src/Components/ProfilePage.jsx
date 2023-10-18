@@ -20,14 +20,15 @@ const ProfilePage = ({ user }) => {
   // console.log(postingsData);
 
   const [selectedPosting, setSelectedPosting] = useState([]);
+  const [displayUserPostings, setDisplayUserPostings] = useState(false);
 
 
   let user_postings = [];
   if (postingsData && user) {
-    // Convert postingsData to an array of objects
+    
     const postingsArray = Object.values(postingsData);
   
-    // Filter the postings based on the user field
+  
     user_postings = postingsArray.filter(posting => posting.user === user.uid);
     // console.log(filteredPostings);
   }
@@ -68,6 +69,15 @@ const ProfilePage = ({ user }) => {
       school: school,
     };
     updateData(updatedUserData);
+  };
+
+  const handleMyPosts = () => {
+    if (displayUserPostings) {
+      setSelectedPosting([]);
+    } else {
+      setSelectedPosting(user_postings);
+    }
+    setDisplayUserPostings(!displayUserPostings);
   };
 
   return (
@@ -182,10 +192,11 @@ const ProfilePage = ({ user }) => {
             </button>
           )}
         </div>
-        <button className="my_posts" onClick={() => setSelectedPosting(user_postings)}>
+
+        <button className="my_posts" onClick={handleMyPosts}>
           My Posts
         </button>
-        {selectedPosting.map((posting, index) => (
+        {displayUserPostings && selectedPosting.map((posting, index) => (
           <div key={index} className="posting-card">
             <p>Address: {posting.address.street}, {posting.address.city}, {posting.address.state}</p>
             <p>Apt Number: {posting.apt_number}</p>
