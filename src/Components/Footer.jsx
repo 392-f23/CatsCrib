@@ -2,10 +2,13 @@ import React from "react";
 import "./Footer.css";
 import { Link } from "react-router-dom";
 
-const Footer = ({ profile, faveHandler, homeHandler}) => {
+const Footer = ({ profile, faveHandler, homeHandler }) => {
   // Helper function to check the email ending
   const isNorthwesternEmail = (email) => {
-    return email?.endsWith('@u.northwestern.edu') || email?.endsWith('@northwestern.edu');
+    return (
+      email?.endsWith("@u.northwestern.edu") ||
+      email?.endsWith("@northwestern.edu")
+    );
   };
   return (
     <div className="footer">
@@ -24,10 +27,12 @@ const Footer = ({ profile, faveHandler, homeHandler}) => {
       )}
 
       <button onClick={faveHandler} className="footer-btn fave-btn">
-        <img src="icons/Heart.png" alt="Favorite" />
+        <Link className="nav-link" to="/">
+          <img src="icons/Heart.png" alt="Favorite" />
+        </Link>
       </button>
     </div>
   );
-}; 
+};
 
 export default Footer;

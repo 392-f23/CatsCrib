@@ -17,23 +17,14 @@ const ProfilePage = ({ user }) => {
 
   const userPostingsPath = `/postings`;
   const [postingsData, postingsLoading, postingsError] = useDbData(userPostingsPath);
-  // console.log(postingsData);
 
   const [selectedPosting, setSelectedPosting] = useState([]);
 
-
   let user_postings = [];
   if (postingsData && user) {
-    // Convert postingsData to an array of objects
     const postingsArray = Object.values(postingsData);
-  
-    // Filter the postings based on the user field
     user_postings = postingsArray.filter(posting => posting.user === user.uid);
-    // console.log(filteredPostings);
   }
-
-
-  
 
   useEffect(() => {
     if (userData) {
@@ -205,7 +196,6 @@ const ProfilePage = ({ user }) => {
           😔 Sign Out! 😔
         </button>
       </div>
-      <Footer></Footer>
     </div>
   );
 };
