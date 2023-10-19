@@ -1,0 +1,398 @@
+commit b5c2d28ebc755f94303ec203f1f4d22fdcc84350
+Author: ploenvora <p.voraprukpisut@gmail.com>
+Date:   Mon Oct 9 00:37:00 2023 -0500
+
+    Fixed signout, connected posting to user
+
+M	src/App.jsx
+M	src/Components/Filter.jsx
+M	src/Components/Header.css
+M	src/Components/Header.jsx
+M	src/Components/MakeAPost.jsx
+M	src/Components/ProfilePage.css
+M	src/Components/ProfilePage.jsx
+M	src/PostingPage.jsx
+
+commit 9212bec9214dac6f43a0288d1176830e105d1be4
+Author: ploenvora <p.voraprukpisut@gmail.com>
+Date:   Sun Oct 8 23:11:27 2023 -0500
+
+    Added styling
+
+M	src/Components/Footer.jsx
+M	src/Components/MakeAPost.css
+M	src/Components/MakeAPost.jsx
+
+commit 57ecaed5d9447451082ccb544fd38590c1a8194a
+Author: ploenvora <p.voraprukpisut@gmail.com>
+Date:   Sun Oct 8 22:51:34 2023 -0500
+
+    Added fave page
+
+M	src/App.jsx
+M	src/Components/Footer.jsx
+M	src/Components/Posting.jsx
+M	src/Components/Postings.jsx
+A	src/FavePage.jsx
+M	src/Home.jsx
+M	src/PostingPage.jsx
+
+commit 3271ea0dcd02aeff5aa4bcc10bee0eb1796cbf9d
+Author: Conor Kotwasinski <conorkotwasinski2024@u.northwestern.edu>
+Date:   Sun Oct 8 22:27:03 2023 -0500
+
+    render if northwestern email
+
+M	src/Components/Footer.jsx
+M	src/Components/MakeAPost.jsx
+
+commit d84f6c2ce74c695020eb2661a181e8e1997c46e8
+Author: Joshua Mahabir <114018982+JoshFVO@users.noreply.github.com>
+Date:   Sun Oct 8 22:11:41 2023 -0500
+
+    Update ProfilePage.jsx
+
+M	src/Components/ProfilePage.jsx
+
+commit 042285dfc0e5be32a9ceeabb2316422187893c44
+Author: JoshFVO <joshmahabir2024@u.northwestern.edu>
+Date:   Sun Oct 8 21:52:55 2023 -0500
+
+    Profile Page Updated
+
+M	src/Components/ProfilePage.jsx
+
+commit e31df6b207c0ac47753e6ea26ee88b2b90d5a607
+Author: Conor Kotwasinski <conorkotwasinski2024@u.northwestern.edu>
+Date:   Sun Oct 8 21:13:36 2023 -0500
+
+    make icon profile link
+
+M	src/App.jsx
+M	src/Components/Header.jsx
+
+commit 50dbcf637a7339d985e01fda338a25addf2bb144
+Author: JoshFVO <joshmahabir2024@u.northwestern.edu>
+Date:   Sun Oct 8 21:02:49 2023 -0500
+
+    ProfilePages
+
+A	.firebaserc
+A	.gitignore
+A	LICENSE
+A	README.md
+A	firebase.json
+A	index.html
+A	package-lock.json
+A	package.json
+A	public/favicon.ico
+A	public/favicon.svg
+A	public/icons/Add.png
+A	public/icons/Bed.png
+A	public/icons/Cat.png
+A	public/icons/EmailLogo.png
+A	public/icons/Heart.png
+A	public/icons/Home.png
+A	public/icons/PhoneLogo.png
+A	public/icons/ProfilePagePhoto.jpeg
+A	public/icons/PronounLogo.png
+A	public/icons/UserImage.png
+A	public/robots.txt
+A	src/App.css
+A	src/App.jsx
+A	src/App.test.jsx
+A	src/Components/Filter.css
+A	src/Components/Filter.jsx
+A	src/Components/Footer.css
+A	src/Components/Footer.jsx
+A	src/Components/Header.css
+A	src/Components/Header.jsx
+A	src/Components/MakeAPost.css
+A	src/Components/MakeAPost.jsx
+A	src/Components/MoreInfo.css
+A	src/Components/MoreInfo.jsx
+A	src/Components/Posting.css
+A	src/Components/Posting.jsx
+A	src/Components/Postings.css
+A	src/Components/Postings.jsx
+A	src/Components/ProfilePage.css
+A	src/Components/ProfilePage.jsx
+A	src/Components/Search.css
+A	src/Components/Search.jsx
+A	src/Home.jsx
+A	src/PostingPage.jsx
+A	src/index.css
+A	src/index.jsx
+A	src/logo.svg
+A	src/utilities/firebase.js
+A	src/utilities/profile.js
+A	src/utilities/useFormData.js
+A	vite.config.js
+
+commit 09fc7e567fafe87335734cf44336a7e9a88f817b
+Author: ploenvora <p.voraprukpisut@gmail.com>
+Date:   Sun Oct 8 20:55:10 2023 -0500
+
+    Styling
+
+M	src/Components/Postings.jsx
+
+commit 8e81bfc5c66b3513a662da88406b31128ad3d6c3
+Author: ploenvora <p.voraprukpisut@gmail.com>
+Date:   Sun Oct 8 20:47:26 2023 -0500
+
+    Styling
+
+M	src/Components/MakeAPost.css
+M	src/Components/MakeAPost.jsx
+
+commit e49f41b098284533e8c5db83c9d0ba9eb2d64be6
+Author: ploenvora <p.voraprukpisut@gmail.com>
+Date:   Sun Oct 8 20:33:15 2023 -0500
+
+    Styling
+
+M	src/Components/MakeAPost.css
+M	src/Components/MakeAPost.jsx
+M	src/Components/Postings.css
+
+commit 4abb6e6fb0556f78f1769c9b8c19e067bb07e6d4
+Author: Conor Kotwasinski <conorkotwasinski2024@u.northwestern.edu>
+Date:   Sun Oct 8 18:51:16 2023 -0500
+
+    undo the username change
+
+M	src/Components/MakeAPost.jsx
+
+commit 6d6a0521dc6f9ae30c56b01d8310c04dabe555ad
+Author: Conor Kotwasinski <conorkotwasinski2024@u.northwestern.edu>
+Date:   Sun Oct 8 18:43:58 2023 -0500
+
+    Sublet or Roommate
+
+M	src/App.jsx
+M	src/Components/MakeAPost.css
+M	src/Components/MakeAPost.jsx
+M	src/Components/Postings.css
+M	src/Components/Postings.jsx
+
+commit c14880910a59e02ce4b7a38b55f7498a5c43b743
+Author: Conor Kotwasinski <conorkotwasinski2024@u.northwestern.edu>
+Date:   Sun Oct 8 17:41:44 2023 -0500
+
+    Add email verification
+
+A	.firebaserc
+A	firebase.json
+M	src/App.jsx
+M	src/Components/Footer.jsx
+M	src/Components/Header.jsx
+M	src/Home.jsx
+M	src/utilities/firebase.js
+A	src/utilities/profile.js
+
+commit 0dcb92a1ab59fb28f79b03b391b21fa5851b224e
+Author: ploenvora <p.voraprukpisut@gmail.com>
+Date:   Sun Oct 8 14:44:41 2023 -0500
+
+    Added the make-a-posting functionality
+
+M	src/Components/MakeAPost.css
+M	src/Components/MakeAPost.jsx
+M	src/Components/Posting.jsx
+M	src/Components/Postings.jsx
+M	src/utilities/firebase.js
+A	src/utilities/useFormData.js
+
+commit 90523caeaa1c5764804fdea9679f590d8d23c110
+Author: ploenvora <p.voraprukpisut@gmail.com>
+Date:   Sun Oct 8 01:49:42 2023 -0500
+
+    Added post form
+
+A	src/Components/MakeAPost.css
+M	src/Components/MakeAPost.jsx
+
+commit c7228078a70565fcae7fda6ca04abc7704c6a727
+Author: ploenvora <p.voraprukpisut@gmail.com>
+Date:   Sun Oct 8 01:15:33 2023 -0500
+
+    Added filter page and add post page
+
+M	src/App.jsx
+A	src/Components/Filter.css
+A	src/Components/Filter.jsx
+M	src/Components/Footer.css
+M	src/Components/Footer.jsx
+M	src/Components/Header.css
+A	src/Components/MakeAPost.jsx
+M	src/Components/MoreInfo.css
+M	src/Components/MoreInfo.jsx
+M	src/Components/Postings.css
+M	src/Components/Postings.jsx
+A	src/PostingPage.jsx
+
+commit 3bca67054fd81771d3bb994b8c075cfb9ad4d67c
+Author: ploenvora <p.voraprukpisut@gmail.com>
+Date:   Sat Oct 7 15:35:15 2023 -0500
+
+    Added router systm
+
+M	package-lock.json
+M	package.json
+A	public/icons/Bed.png
+A	public/icons/Cat.png
+M	src/App.jsx
+M	src/Components/Footer.css
+M	src/Components/Footer.jsx
+M	src/Components/Header.jsx
+M	src/Components/MoreInfo.css
+M	src/Components/Postings.css
+M	src/Components/Postings.jsx
+A	src/Home.jsx
+
+commit 221fd254f75186cf48e677940ae0eadcb9f21b0a
+Author: ploenvora <p.voraprukpisut@gmail.com>
+Date:   Sat Oct 7 14:56:29 2023 -0500
+
+    Fixed footer
+
+M	src/Components/Footer.css
+
+commit 70f78fa2a3735e272cc7769ada05fde0795dc508
+Author: ploenvora <p.voraprukpisut@gmail.com>
+Date:   Sat Oct 7 14:53:10 2023 -0500
+
+    Fixed CSS
+
+M	src/Components/Footer.css
+M	src/Components/Footer.jsx
+M	src/Components/MoreInfo.css
+M	src/Components/Posting.css
+M	src/Components/Posting.jsx
+
+commit d672989e7407c7fe03a1e2de44ddf8c77f27b3ad
+Author: ploenvora <p.voraprukpisut@gmail.com>
+Date:   Sat Oct 7 14:44:03 2023 -0500
+
+    Fixed footer
+
+A	public/icons/Add.png
+A	public/icons/Heart.png
+R100	src/Components/HeaderImage.png	public/icons/Home.png
+R100	src/Components/UserImage.png	public/icons/UserImage.png
+D	src/Components/Favorite.svg
+M	src/Components/Footer.css
+M	src/Components/Footer.jsx
+M	src/Components/Header.css
+M	src/Components/Header.jsx
+D	src/Components/HomePage.svg
+D	src/Components/Post.svg
+
+commit 8167cfe83fd837b7b4f6d1868e355fcbd34185ca
+Author: Chentao Ye <cye@Chentaos-MacBook-Pro-2.local>
+Date:   Sat Oct 7 13:42:38 2023 -0500
+
+    Add footer with 3 buttons: home, post, favorite
+
+M	src/App.jsx
+A	src/Components/Favorite.svg
+A	src/Components/Footer.css
+A	src/Components/Footer.jsx
+A	src/Components/HomePage.svg
+A	src/Components/Post.svg
+
+commit 34713c84835add4c9e50e25dea2bc5f5e1f6ca36
+Author: ploenvora <p.voraprukpisut@gmail.com>
+Date:   Sat Oct 7 01:52:54 2023 -0500
+
+    Added popup
+
+M	src/Components/MoreInfo.css
+M	src/Components/MoreInfo.jsx
+
+commit 2c88a4286f73a3351d21baa15d99ec9dddf75fe5
+Author: ploenvora <p.voraprukpisut@gmail.com>
+Date:   Sat Oct 7 01:45:12 2023 -0500
+
+    Added grid
+
+M	package-lock.json
+M	package.json
+M	src/App.jsx
+A	src/Components/MoreInfo.css
+A	src/Components/MoreInfo.jsx
+A	src/Components/Posting.css
+A	src/Components/Posting.jsx
+A	src/Components/Postings.css
+A	src/Components/Postings.jsx
+M	src/Components/Search.css
+A	src/utilities/firebase.js
+
+commit 12862112f3308e9bb988889f69e925e2990d8868
+Author: ploenvora <p.voraprukpisut@gmail.com>
+Date:   Fri Oct 6 15:42:59 2023 -0500
+
+    Cleaned CSS
+
+M	src/App.css
+M	src/App.jsx
+M	src/Components/Header.css
+M	src/Components/Header.jsx
+M	src/Components/Search.css
+
+commit eb752b4a4d5020c2da29963e2d1364ee9884029d
+Author: ploenvora <p.voraprukpisut@gmail.com>
+Date:   Fri Oct 6 15:37:01 2023 -0500
+
+    Added search bar
+
+M	src/App.jsx
+A	src/Components/Search.css
+A	src/Components/Search.jsx
+
+commit abf0cf670162950341e552e1a16664ad02e7333f
+Author: JoshFVO <joshmahabir2024@u.northwestern.edu>
+Date:   Wed Oct 4 22:47:35 2023 -0500
+
+    Header Second Changes
+
+M	src/Components/Header.css
+M	src/Components/Header.jsx
+A	src/Components/UserImage.png
+
+commit dc3dd816fcc8b8a4e9baeeb1dc4c1ae932e23c13
+Author: JoshFVO <joshmahabir2024@u.northwestern.edu>
+Date:   Wed Oct 4 21:28:21 2023 -0500
+
+    HeaderStart
+
+M	index.html
+A	public/favicon.ico
+M	src/App.css
+M	src/App.jsx
+A	src/Components/Header.css
+A	src/Components/Header.jsx
+A	src/Components/HeaderImage.png
+
+commit c92081f49e74a32897a8d672d4118cd7f08dd488
+Author: JoshFVO <joshmahabir2024@u.northwestern.edu>
+Date:   Wed Oct 4 20:25:37 2023 -0500
+
+    first commit
+
+A	.gitignore
+A	LICENSE
+A	README.md
+A	index.html
+A	package-lock.json
+A	package.json
+A	public/favicon.svg
+A	public/robots.txt
+A	src/App.css
+A	src/App.jsx
+A	src/App.test.jsx
+A	src/index.css
+A	src/index.jsx
+A	src/logo.svg
+A	vite.config.js

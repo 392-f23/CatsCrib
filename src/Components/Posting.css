@@ -1,0 +1,111 @@
+.posting {
+  display: flex;
+  margin-bottom: 10px;
+  border: 2px solid #d4cbea;
+  border-radius: 12px;
+  box-shadow: 0 2px 2px #0000001a;
+  transition: box-shadow 0.3s ease;
+  padding: 10px;
+  position: relative;
+  max-width: 400px;
+  margin-left: 2px;
+  margin-right: 2px;
+  height: 180px;
+}
+
+.posting:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.posting-image {
+  flex: 1;
+  min-width: 50%;
+  height: 100%;
+}
+
+.posting-image img {
+  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.posting-info {
+  flex: 1;
+  text-align: left;
+  font-size: 13px;
+  padding: 5px 0px 5px 8px;
+  vertical-align: middle;
+}
+
+.price {
+  color: #674ea7;
+  font-size: 15px;
+  font-weight: 700;
+  padding-top: 0px;
+  margin-top: 0px;
+}
+
+.more-info-btn {
+  margin-top: 5px;
+  padding: 5px 10px;
+  font-size: 11px;
+  text-align: center;
+  background-color: lightgray;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.more-info-btn:hover {
+  background-color: darkgrey;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heart-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 15px; /* Adjust the font size as needed */
+  cursor: pointer;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  font-size: 20x;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  padding: 8px 10px;
+  border-radius: 4px;
+  margin: 0px 8px;
+}
+
+.carousel-btn:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.carousel-btn.prev {
+  left: 0;
+}
+
+.carousel-btn.next {
+  right: 0;
+}
+
+.posting-image {
+  position: relative;
+  flex: 1;
+  min-width: 50%;
+  height: 100%;
+}

@@ -1,0 +1,46 @@
+.header {
+  height: 8vh;
+  min-height: 35pt;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: #674ea7 solid 2pt;
+  padding: 0px 12px;
+  margin-bottom: 5px;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 10000;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.logoImage {
+  padding-top: 0pt;
+  margin-top: 0pt;
+  width: 20pt;
+}
+
+h2 {
+  margin: 0;
+  color: #674ea7;
+  text-align: center;
+}
+
+.profilePhoto {
+  width: 25pt;
+  background-color: white;
+}
+
+.login-button {
+  background-color:white;
+  padding: 6px 12px;
+  border-radius: 10px;
+  border: 2px solid #674ea7;
+  font-weight: 700;
+  color: #674ea7;
+}

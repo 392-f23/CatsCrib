@@ -1,0 +1,146 @@
+.profile-page {
+  overflow-y: scroll;
+  margin-bottom: 70px;
+}
+
+.profile-content {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0px;
+}
+
+.profile-page-photo {
+  width: 75pt;
+  margin: 25px 0px 20px 0px;
+  border-radius: 50%;
+}
+
+.profile-info {
+  font-size: 15px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 3px solid #e6ddfd;
+  padding: 10px;
+  border-radius: 20px;
+  position: relative;
+  min-width: 85vw;
+}
+
+.email-profile {
+  margin: 0px;
+  margin-left: 2px;
+}
+
+.filter-tag-profile {
+  margin-bottom: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #674ea7;
+  padding: 0;
+  margin-left: 2px;
+}
+
+.editable {
+  padding: 8px 8px;
+  border: 2px solid gainsboro;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s;
+  color: #674ea7;
+  font-size: 14px;
+}
+
+.not-editable {
+  margin-left: -5px;
+  padding: 8px 8px;
+  border: 0px;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s;
+  color: #674ea7;
+  font-size: 14px;
+}
+
+.dropdown {
+  -webkit-appearance: none;
+}
+
+.not-editable.dropdown {
+  margin-left: -6px;
+  -webkit-appearance: none;
+}
+
+.not-editable.school {
+  margin-left: -8px;
+}
+
+.sign-out {
+  align-items: center;
+  font-size: 15px;
+  width: 150px;
+  padding: 8px;
+  border-radius: 20px;
+  font-weight: 700;
+  border: 0;
+  background-color: pink;
+  color: palevioletred;
+}
+
+.sign-out:hover {
+  background-color: palevioletred;
+  color: white;
+}
+
+.sign-out-nav {
+  text-decoration: none;
+}
+
+.my_posts {
+  align-items: center;
+  font-size: 15px;
+  width: 150px;
+  padding: 8px;
+  border-radius: 20px;
+  font-weight: 700;
+  border: 0;
+  background-color: rgb(178, 136, 219);
+  color: rgb(62, 48, 101);
+}
+
+.my_posts:hover {
+  background-color: rgb(178, 136, 219);
+  color: white;
+}
+
+.my_posts-nav {
+  text-decoration: none;
+}
+
+.edit-btn {
+  position: absolute;
+  top: 7px;
+  right: 10px;
+  font-size: 13px;
+  border: 0;
+  background-color: transparent;
+}
+
+.save-btn {
+  margin: 20px 130px 10px 130px;
+  padding: 7px 0px;
+  border-radius: 10px;
+  background-color: #bfa9f6;
+  color: #674ea7;
+  font-weight: 700;
+  border: 0px;
+}
+
+.save-btn:hover {
+  background-color: #674ea7;
+  color: white;
+}
