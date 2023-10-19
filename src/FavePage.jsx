@@ -9,7 +9,6 @@ const FavePage = ({ profile }) => {
       <Header />
       <Search />
       <Postings select={"fave"}/>
-      <Footer profile={profile} />
     </div>
   );
 };

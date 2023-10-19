@@ -25,7 +25,9 @@ const MoreInfo = ({ data, closeHandler }) => {
           </p>
           <div className="user-buttons">
             {userData?.phone && (
-              <button onClick={() => handleCallClick(userData?.phone)}>☎️</button>
+              <button onClick={() => handleCallClick(userData?.phone)}>
+                ☎️
+              </button>
             )}
             <button
               onClick={() => handleMailClick(userData?.email)}
@@ -35,10 +37,9 @@ const MoreInfo = ({ data, closeHandler }) => {
             </button>
           </div>
         </div>
-        <p>Roommates 🛏️: {data.roommates}</p>
-        {data.type === "house" && <p>Housemates 🏠: {data.housemates}</p>}
+        {data.type === "house" && <p>Housemates 🏠: {data.roommates}</p>}
         {data.type === "apartment" && (
-          <p>Apartment-mates 🏠: {data.housemates}</p>
+          <p>Apartment-mates 🏠: {data.roommates}</p>
         )}
         <p>{data.more_info}</p>
       </div>

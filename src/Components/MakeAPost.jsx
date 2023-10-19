@@ -213,6 +213,7 @@ const MakeAPost = ({ user }) => {
           onChange={handleImageChange}
           className={`upload-images ${errors.images ? "input-error" : ""}`}
           multiple
+          accept="image/*"
         />
         <p className="filter-tag">MORE INFO</p>
         <textarea
