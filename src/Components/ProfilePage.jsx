@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./ProfilePage.css";
 import Footer from "./Footer";
-import { signOut, useDbData, useDbUpdate } from "../utilities/firebase";
+import { signOut, useDbData, useDbUpdate, useDbRemove } from "../utilities/firebase";
 import { useNavigate } from "react-router-dom";
 import EditPosting from "./EditPosting"; // Import the EditPosting component
 
@@ -15,6 +15,7 @@ const ProfilePage = ({ user }) => {
   const [pronouns, setPronouns] = useState(userData?.pronouns || "");
   const [gender, setGender] = useState(userData?.gender || "");
   const [school, setSchool] = useState(userData?.school || "");
+  const [removeData, removeResult] = useDbRemove(`/postings`);
 
   const userPostingsPath = `/postings`;
   const [postingsData, postingsLoading, postingsError] = useDbData(userPostingsPath);
@@ -27,7 +28,7 @@ if (postingsData && user) {
   user_postings = Object.entries(postingsData)
     .filter(([key, posting]) => posting.user === user.uid)
     .map(([key, posting]) => ({ ...posting, id: key }));
-  // console.log(user_postings);
+  
 }
 
 
@@ -82,9 +83,11 @@ if (postingsData && user) {
   };
 
   const handleRemove = (posting) => {
-    // Implement posting removal logic here
-    // You can use a function to delete the posting from the database
+    const postingPath = `/postings/${posting}`;
+    console.log(postingPath)
+    removeData(postingPath); 
   };
+  
 
   return (
     <div className="profile-page">
@@ -210,7 +213,7 @@ if (postingsData && user) {
               <button className="edit-button" onClick={() => handleEdit(posting)}>
                 Edit
               </button>
-              <button className="remove-btn" onClick={() => handleRemove(posting)}>
+              <button className="remove-btn" onClick={() => handleRemove(posting.id)}>
                 Remove
               </button>
             </div>
