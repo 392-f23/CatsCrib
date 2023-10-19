@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./ProfilePage.css";
 import Footer from "./Footer";
 import { signOut, useDbData, useDbUpdate } from "../utilities/firebase";
 import { useNavigate } from "react-router-dom";
+import EditPosting from "./EditPosting"; // Import the EditPosting component
 
 const ProfilePage = ({ user }) => {
   const navigate = useNavigate();
@@ -22,10 +23,15 @@ const ProfilePage = ({ user }) => {
   const [displayUserPostings, setDisplayUserPostings] = useState(false);
 
   let user_postings = [];
-  if (postingsData && user) {
-    const postingsArray = Object.values(postingsData);
-    user_postings = postingsArray.filter(posting => posting.user === user.uid);
-  }
+if (postingsData && user) {
+  user_postings = Object.entries(postingsData)
+    .filter(([key, posting]) => posting.user === user.uid)
+    .map(([key, posting]) => ({ ...posting, id: key }));
+  // console.log(user_postings);
+}
+
+
+  const [editingPosting, setEditingPosting] = useState(null);
 
   useEffect(() => {
     if (userData) {
@@ -69,6 +75,15 @@ const ProfilePage = ({ user }) => {
       setSelectedPosting(user_postings);
     }
     setDisplayUserPostings(!displayUserPostings);
+  };
+
+  const handleEdit = (posting) => {
+    setEditingPosting(posting);
+  };
+
+  const handleRemove = (posting) => {
+    // Implement posting removal logic here
+    // You can use a function to delete the posting from the database
   };
 
   return (
@@ -176,7 +191,7 @@ const ProfilePage = ({ user }) => {
               Kellogg
             </option>
           </select>
-
+          
           {isEditable && (
             <button className="save-btn" onClick={profileButtonHandler}>
               Save
@@ -192,21 +207,33 @@ const ProfilePage = ({ user }) => {
             <p>Address: {posting.address.street}, {posting.address.city}, {posting.address.state}</p>
             <p>Apt Number: {posting.apt_number}</p>
             <div className="edit-buttons">
-      <button className="edit-button" onClick={() => handleEdit(posting)}>
-        Edit
-      </button>
-      <button className="remove-btn" onClick={() => handleRemove(posting)}>
-        Remove
-      </button>
-    </div>
-            </div>))}
-
-
+              <button className="edit-button" onClick={() => handleEdit(posting)}>
+                Edit
+              </button>
+              <button className="remove-btn" onClick={() => handleRemove(posting)}>
+                Remove
+              </button>
+            </div>
+          </div>
+        ))}
 
         <button className="sign-out" onClick={handleSignOut}>
           😔 Sign Out! 😔
         </button>
       </div>
+
+      {/* Display the EditPosting component if editingPosting is not null */}
+      {editingPosting && (
+        <EditPosting
+          posting={editingPosting}
+          onSave={(editedPosting) => {
+            // Handle saving edited posting data here, e.g., updating in the database
+            // After saving, clear the editing state
+            setEditingPosting(null);
+          }}
+          onClose={() => setEditingPosting(null)}
+        />
+      )}
     </div>
   );
 };
