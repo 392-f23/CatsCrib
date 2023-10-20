@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./ProfilePage.css";
 import Footer from "./Footer";
 import { signOut, useDbData, useDbUpdate, useDbRemove } from "../utilities/firebase";
 import { useNavigate } from "react-router-dom";
+import EditPosting from "./EditPosting"; // Import the EditPosting component
 
 const ProfilePage = ({ user }) => {
   const navigate = useNavigate();
@@ -88,6 +89,25 @@ const ProfilePage = ({ user }) => {
       setShowHide("Show");
       setSelectedPosting([]);
     }
+  };
+  
+  const handleMyPosts = () => {
+    if (displayUserPostings) {
+      setSelectedPosting([]);
+    } else {
+      setSelectedPosting(user_postings);
+    }
+    setDisplayUserPostings(!displayUserPostings);
+  };
+
+  const handleEdit = (posting) => {
+    setEditingPosting(posting);
+  };
+
+  const handleRemove = (posting) => {
+    const postingPath = `/postings/${posting}`;
+    console.log(postingPath)
+    removeData(postingPath); 
   };
 
   return (
@@ -195,7 +215,7 @@ const ProfilePage = ({ user }) => {
               Kellogg
             </option>
           </select>
-
+          
           {isEditable && (
             <button className="save-btn" onClick={profileButtonHandler}>
               Save
