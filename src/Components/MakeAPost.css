@@ -192,7 +192,6 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 998; /* Ensure overlay appears below the edit card */
-  display: none;
 }
 
 .overlay.active {
