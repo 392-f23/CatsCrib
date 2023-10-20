@@ -18,7 +18,7 @@ const Filter = ({ closeHandler, onFilterSubmit, initialFilters }) => {
     setEndDate("");
     setPrice("");
     setSortBy("");
-    
+
     // Submitting the cleared filters back to the parent component
     onFilterSubmit({
       type: "",
@@ -27,11 +27,10 @@ const Filter = ({ closeHandler, onFilterSubmit, initialFilters }) => {
       startDate: "",
       endDate: "",
       price: "",
-      sortBy: ""
+      sortBy: "",
     });
   };
-  
-  
+
   useEffect(() => {
     onFilterSubmit({
       type,
@@ -40,81 +39,83 @@ const Filter = ({ closeHandler, onFilterSubmit, initialFilters }) => {
       startDate,
       endDate,
       price,
-      sortBy
+      sortBy,
     });
   }, [type, unit, roommates, startDate, endDate, price, sortBy]);
-  
+
   return (
     <div className="overlay-filter" onClick={closeHandler}>
-      <div className="filters">
-        <label>Types:
-          <select value={type} onChange={e => setType(e.target.value)}>
-            <option value="">Select</option>
-            <option value="apartment">Apartment</option>
-            <option value="house">House</option>
-          </select>
-        </label>
-  
-        <label>Unit:
-          <select value={unit} onChange={e => setUnit(e.target.value)}>
-            <option value="house">House</option>
-            <option value="studio">Studio</option>
-            <option value="1br">1 Bedroom</option>
-            <option value="2br">2 Bedrooms</option>
-            <option value="3br">3 Bedrooms</option>
-            <option value="4br+">4+ Bedrooms</option>
-          </select>
-        </label>
-  
-        <label>Number of Roommates:
-          <input
-            type="number"
-            value={roommates}
-            onChange={e => setRoommates(e.target.value)}
-            min="1"
-            max="12"
-          />
-        </label>
-  
-        <label>Start Date:
-          <input
-            type="date"
-            value={startDate}
-            onChange={e => setStartDate(e.target.value)}
-          />
-        </label>
-  
-        <label>End Date:
-          <input
-            type="date"
-            value={endDate}
-            onChange={e => setEndDate(e.target.value)}
-          />
-        </label>
-  
-        <label>Price:
-          <input
-            type="number"
-            value={price}
-            onChange={e => setPrice(e.target.value)}
-            min="0"
-          />
-        </label>
-  
-        <label>Sort By:
-          <select value={sortBy} onChange={e => setSortBy(e.target.value)}>
-            <option value="">Select</option>
-            <option value="priceLowToHigh">Price: Low to High</option>
-            <option value="priceHighToLow">Price: High to Low</option>
-          </select>
-        </label>
+      <div className="filters" onClick={(e) => e.stopPropagation()}>
+        <div className='apartment-filters'>
+          <label>
+            Types:
+            <select value={type} onChange={(e) => setType(e.target.value)}>
+              <option value="">All</option>
+              <option value="apartment">Apartment</option>
+              <option value="house">House</option>
+            </select>
+          </label>
+          <label>
+            Unit:
+            <select value={unit} onChange={(e) => setUnit(e.target.value)}>
+              <option value="house">House</option>
+              <option value="studio">Studio</option>
+              <option value="1br">1 Bedroom</option>
+              <option value="2br">2 Bedrooms</option>
+              <option value="3br">3 Bedrooms</option>
+              <option value="4br+">4+ Bedrooms</option>
+            </select>
+          </label>
+          <label>
+            Number of Roommates:
+            <input
+              type="number"
+              value={roommates}
+              onChange={(e) => setRoommates(e.target.value)}
+              min="1"
+              max="12"
+            />
+          </label>
+          <label>
+            Start Date:
+            <input
+              type="date"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+            />
+          </label>
+          <label>
+            End Date:
+            <input
+              type="date"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+            />
+          </label>
+          <label>
+            Price:
+            <input
+              type="number"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              min="0"
+            />
+          </label>
+          <label>
+            Sort By:
+            <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+              <option value="">Select</option>
+              <option value="priceLowToHigh">Price: Low to High</option>
+              <option value="priceHighToLow">Price: High to Low</option>
+            </select>
+          </label>
+        </div>
         <button className="clear-button" onClick={clearFilters}>
           Clear Filters
         </button>
       </div>
     </div>
   );
-  
 };
 
 export default Filter;

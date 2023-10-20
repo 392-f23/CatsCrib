@@ -14,8 +14,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 80%;
-  max-height: 50%;
-  overflow-y: auto;
+  height: 52%;
+  overflow-y: scroll;
   padding: 2.5px 10px;
   background-color: white;
   border-radius: 10px;
@@ -49,7 +49,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 20pt;
+  height: 15px;
 }
 
 .subleaser button {
@@ -65,3 +65,9 @@
 button:hover {
   cursor: pointer;
 }
+
+.map {
+  margin-bottom: 10px;
+}
+
+
