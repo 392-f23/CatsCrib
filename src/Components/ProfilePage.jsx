@@ -56,7 +56,6 @@ const ProfilePage = ({ user }) => {
   };
 
   const handleRemove = (posting, index) => {
-    console.log("handleRemove", posting.id, index);
     removeData(`/postings/${posting.id}`)
   };
 
