@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./ProfilePage.css";
 import Footer from "./Footer";
-import { signOut, useDbData, useDbUpdate, useDbRemove } from "../utilities/firebase";
+import {
+  signOut,
+  useDbData,
+  useDbUpdate,
+  useDbRemove,
+} from "../utilities/firebase";
 import { useNavigate } from "react-router-dom";
-import EditPosting from "./EditPosting"; // Import the EditPosting component
+import EditPosting from "./EditPosting";
 
 const ProfilePage = ({ user }) => {
   const navigate = useNavigate();
@@ -18,6 +23,7 @@ const ProfilePage = ({ user }) => {
   const [showHide, setShowHide] = useState("Show");
   const [selectedPosting, setSelectedPosting] = useState([]);
   const [removeData, removeResult] = useDbRemove();
+  const [editingPosting, setEditingPosting] = useState(null);
 
   const userPostingsPath = `/postings`;
   const [postingsData, postingsLoading, postingsError] =
@@ -57,7 +63,12 @@ const ProfilePage = ({ user }) => {
   };
 
   const handleRemove = (posting) => {
-    removeData(`/postings/${posting.id}`)
+    removeData(`/postings/${posting.id}`);
+  };
+
+  const handleEdit = (posting) => {
+    console.log(posting)
+    setEditingPosting(posting);
   };
 
   const handleSignOut = async () => {
@@ -90,7 +101,7 @@ const ProfilePage = ({ user }) => {
       setSelectedPosting([]);
     }
   };
-  
+
   const handleMyPosts = () => {
     if (displayUserPostings) {
       setSelectedPosting([]);
@@ -205,7 +216,6 @@ const ProfilePage = ({ user }) => {
               Kellogg
             </option>
           </select>
-          
           {isEditable && (
             <button className="save-btn" onClick={profileButtonHandler}>
               Save
@@ -231,6 +241,12 @@ const ProfilePage = ({ user }) => {
                   {convertDateFormat(posting.end_date)}
                 </p>
                 <button
+                  className="edit-btn-my-post"
+                  onClick={() => handleEdit(posting)}
+                >
+                  ✍
+                </button>
+                <button
                   className="remove-btn-my-post"
                   onClick={() => handleRemove(posting, index)}
                 >
@@ -240,6 +256,15 @@ const ProfilePage = ({ user }) => {
             ))}
           </div>
         </div>
+      )}
+      {editingPosting && (
+        <EditPosting
+          posting={editingPosting}
+          onSave={(editedPosting) => {
+            setEditingPosting(null);
+          }}
+          onClose={() => setEditingPosting(null)}
+        />
       )}
       <button className="sign-out" onClick={handleSignOut}>
         😔 Sign Out! 😔
