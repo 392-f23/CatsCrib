@@ -56,7 +56,7 @@ const ProfilePage = ({ user }) => {
     return `${month}/${day}/${year}`;
   };
 
-  const handleRemove = (posting, index) => {
+  const handleRemove = (posting) => {
     removeData(`/postings/${posting.id}`)
   };
 
@@ -98,16 +98,6 @@ const ProfilePage = ({ user }) => {
       setSelectedPosting(user_postings);
     }
     setDisplayUserPostings(!displayUserPostings);
-  };
-
-  const handleEdit = (posting) => {
-    setEditingPosting(posting);
-  };
-
-  const handleRemove = (posting) => {
-    const postingPath = `/postings/${posting}`;
-    console.log(postingPath)
-    removeData(postingPath); 
   };
 
   return (

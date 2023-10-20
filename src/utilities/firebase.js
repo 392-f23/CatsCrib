@@ -9,8 +9,7 @@ import {
   query,
   orderByChild,
   equalTo,
-  get,
-  remove,
+  get
 } from "firebase/database";
 import React, { useCallback, useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
@@ -129,23 +128,6 @@ export const useDbExist = (path, value) => {
   }, [database, path, value]);
   return [checkExists, exists, error];
 };
-
-
-export const useDbRemove = () => {
-  const [result, setResult] = useState(null);
-  const makeResult = (error) => ({
-    success: !error,
-    error: error || null,
-  });
-  const removeData = useCallback((path) => {
-    remove(ref(database, path))
-      .then(() => setResult(makeResult()))
-      .catch((error) => setResult(makeResult(error)));
-  }, []);
-
-  return [removeData, result];
-};
-
 
 export const useDbAdd = (path, index = null) => {
   const [result, setResult] = useState(null);
