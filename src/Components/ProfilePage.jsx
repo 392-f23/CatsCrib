@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./ProfilePage.css";
 import Footer from "./Footer";
-import { signOut, useDbData, useDbUpdate } from "../utilities/firebase";
+import { signOut, useDbData, useDbUpdate, useDbRemove } from "../utilities/firebase";
 import { useNavigate } from "react-router-dom";
 
 const ProfilePage = ({ user }) => {
@@ -14,17 +14,23 @@ const ProfilePage = ({ user }) => {
   const [pronouns, setPronouns] = useState(userData?.pronouns || "");
   const [gender, setGender] = useState(userData?.gender || "");
   const [school, setSchool] = useState(userData?.school || "");
+  const [showHide, setShowHide] = useState("Show");
+  const [selectedPosting, setSelectedPosting] = useState([]);
+  const [removeData, removeResult] = useDbRemove();
 
   const userPostingsPath = `/postings`;
-  const [postingsData, postingsLoading, postingsError] = useDbData(userPostingsPath);
+  const [postingsData, postingsLoading, postingsError] =
+    useDbData(userPostingsPath);
 
-  const [selectedPosting, setSelectedPosting] = useState([]);
-
-  let user_postings = [];
-  if (postingsData && user) {
-    const postingsArray = Object.values(postingsData);
-    user_postings = postingsArray.filter(posting => posting.user === user.uid);
-  }
+  // to show the posts on my posts
+  useEffect(() => {
+    if (postingsData && user) {
+      const user_postings = Object.entries(postingsData)
+        .filter(([key, posting]) => posting.user === user.uid)
+        .map(([key, posting]) => ({ ...posting, id: key }));
+      setSelectedPosting(user_postings);
+    }
+  }, [postingsData]);
 
   useEffect(() => {
     if (userData) {
@@ -39,6 +45,20 @@ const ProfilePage = ({ user }) => {
   if (!user) {
     return null;
   }
+
+  const convertDateFormat = (date) => {
+    const parts = date.split("-");
+    if (parts.length !== 3) return date;
+    const year = parts[0].slice(-2);
+    const month = parts[1];
+    const day = parts[2];
+    return `${month}/${day}/${year}`;
+  };
+
+  const handleRemove = (posting, index) => {
+    console.log("handleRemove", posting.id, index);
+    removeData(`/postings/${posting.id}`)
+  };
 
   const handleSignOut = async () => {
     try {
@@ -59,6 +79,16 @@ const ProfilePage = ({ user }) => {
       school: school,
     };
     updateData(updatedUserData);
+  };
+
+  const handleShowHidePostings = (user_postings) => {
+    if (showHide == "Show") {
+      setSelectedPosting(user_postings);
+      setShowHide("Hide");
+    } else {
+      setShowHide("Show");
+      setSelectedPosting([]);
+    }
   };
 
   return (
@@ -173,29 +203,38 @@ const ProfilePage = ({ user }) => {
             </button>
           )}
         </div>
-        <button className="my_posts" onClick={() => setSelectedPosting(user_postings)}>
-          My Posts
-        </button>
-        {selectedPosting.map((posting, index) => (
-          <div key={index} className="posting-card">
-            <p>Address: {posting.address.street}, {posting.address.city}, {posting.address.state}</p>
-            <p>Apt Number: {posting.apt_number}</p>
-            <div className="edit-buttons">
-      <button className="edit-button" onClick={() => handleEdit(posting)}>
-        Edit
-      </button>
-      <button className="remove-btn" onClick={() => handleRemove(posting)}>
-        Remove
-      </button>
-    </div>
-            </div>))}
-
-
-            
-        <button className="sign-out" onClick={handleSignOut}>
-          😔 Sign Out! 😔
-        </button>
       </div>
+      {postingsData && (
+        <div className="my-postings-section">
+          <h2>My Postings</h2>
+          <div className={`my-posts`}>
+            {selectedPosting.map((posting, index) => (
+              <div key={index} className="my-post">
+                <p>🏷️ ${posting.price}/month</p>
+                <p>
+                  📍: {posting.apt_number && `# ${posting.apt_number},`}{" "}
+                  {posting.address.street}, {posting.address.city},{" "}
+                  {posting.address.state}
+                </p>
+                <p>🛏️ 1 room in a {posting.unit}</p>
+                <p>
+                  📅 {convertDateFormat(posting.start_date)} -{" "}
+                  {convertDateFormat(posting.end_date)}
+                </p>
+                <button
+                  className="remove-btn-my-post"
+                  onClick={() => handleRemove(posting, index)}
+                >
+                  ❌
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+      <button className="sign-out" onClick={handleSignOut}>
+        😔 Sign Out! 😔
+      </button>
     </div>
   );
 };

@@ -9,6 +9,7 @@ import {
   orderByChild,
   equalTo,
   get,
+  remove,
 } from "firebase/database";
 import React, { useCallback, useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
@@ -20,7 +21,12 @@ import {
   signOut as firebaseSignOut,
   sendEmailVerification,
 } from "firebase/auth";
-import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage";
+import {
+  getStorage,
+  ref as storageRef,
+  uploadBytes,
+  getDownloadURL,
+} from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAIYg7fp9VX-3R-Q47PCi8tZaJq7T00qtk",
@@ -144,4 +150,18 @@ export const useDbAdd = (path, index = null) => {
     [database, path, index]
   );
   return [addData, result];
+};
+
+export const useDbRemove = () => {
+  const [result, setResult] = useState(null);
+  const makeResult = (error) => ({
+    success: !error,
+    error: error || null,
+  });
+  const removeData = useCallback((path) => {
+    remove(ref(database, path))
+      .then(() => setResult(makeResult()))
+      .catch((error) => setResult(makeResult(error)));
+  }, []);
+  return [removeData, result];
 };
