@@ -1,6 +1,7 @@
 .profile-page {
   overflow-y: scroll;
-  margin-bottom: 70px;
+  margin-bottom: 80px;
+  text-align: center;
 }
 
 .profile-content {
@@ -143,4 +144,38 @@
 .save-btn:hover {
   background-color: #674ea7;
   color: white;
+}
+
+.my-posts {
+  margin: 15px 10px 20px 10px;
+  min-width: 85vw;
+  border: solid 3px #e6ddfd;
+  border-radius: 20px;
+  max-height: 250px;
+  overflow-y: scroll;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px 0px;
+}
+
+.my-post {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  border: 1px solid rgb(243, 243, 243);
+  padding: 3px 12px;
+  width: 310px;
+  margin: 10px 10px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.remove-btn-my-post {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
 }

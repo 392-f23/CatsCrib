@@ -8,7 +8,6 @@ const Home = ({ profile, isFavePage }) => {
   return (
     <div>
       <Header />
-      <Search />
       <Postings isFavePage={isFavePage}/>
     </div>
   );
