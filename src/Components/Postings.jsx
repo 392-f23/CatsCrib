@@ -5,6 +5,7 @@ import Filter from "./Filter.jsx";
 import "./Postings.css";
 
 const Postings = ({ isFavePage }) => {
+  const [filters, setFilters] = useState({});
   const [postings, setPostings] = useState([]);
   const [data, loading, error] = useDbData("/postings");
   const [isFiltering, setIsFiltering] = useState(false);
@@ -21,24 +22,60 @@ const Postings = ({ isFavePage }) => {
       }
     });
   };
+  const handleFilterSubmit = (newFilters) => {
+    setFilters(newFilters);
+  };
 
   // if data exists, set the postings to the dataset
   // everytime data changes or the page reloads the postings is resetted!
+  console.log("filters", filters);
   useEffect(() => {
     if (data) {
-      const filteredPostings = Object.values(data).filter(
-        (post) => post.category === selectedCategory
-      );
-      if (isFavePage) {
-        setPostings(faved.filter((post) => post.category === selectedCategory));
-      } else {
-        setPostings(filteredPostings);
-      }
+        let filteredPostings = Object.values(data).filter(post => post.category === selectedCategory);
+
+        if (filters.type) {
+            filteredPostings = filteredPostings.filter(post => post.type === filters.type);
+        }
+
+        if (filters.unit) {
+            filteredPostings = filteredPostings.filter(post => post.unit === filters.unit);
+        }
+
+        if (filters.roommates) {
+            filteredPostings = filteredPostings.filter(post => post.roommates === filters.roommates);
+        }
+
+        if (filters.startDate) {
+            filteredPostings = filteredPostings.filter(post => new Date(post.start_date) >= new Date(filters.startDate));
+        }
+
+        if (filters.endDate) {
+            filteredPostings = filteredPostings.filter(post => new Date(post.end_date) <= new Date(filters.endDate));
+        }
+
+        if (filters.price) {
+            filteredPostings = filteredPostings.filter(post => post.price <= filters.price);
+        }
+
+        // Sorting
+        if (filters.sortBy === "priceLowToHigh") {
+            filteredPostings.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+        } else if (filters.sortBy === "priceHighToLow") {
+            filteredPostings.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+        }
+
+        if (isFavePage) {
+            setPostings(faved.filter(post => post.category === selectedCategory));
+        } else {
+            setPostings(filteredPostings);
+        }
     }
-  }, [data, selectedCategory, isFavePage, faved]);
+}, [data, selectedCategory, isFavePage, faved, filters]);
+
 
   // function for filter popup on the side
   const filterHandler = () => {
+    console.log("Filter button clicked!");
     setIsFiltering((prev) => !prev);
   };
 
@@ -74,7 +111,21 @@ const Postings = ({ isFavePage }) => {
             isFaved={faved.includes(data)}
           ></Posting>
         ))}
-      {isFiltering && <Filter closeHandler={filterHandler}></Filter>}
+      {isFiltering && <Filter
+        closeHandler={filterHandler}
+        onFilterSubmit={handleFilterSubmit}
+        initialFilters={{
+          type: filters.type,
+          unit: filters.unit,
+          roommates: filters.roommates,
+          startDate: filters.startDate,
+          endDate: filters.endDate,
+          price: filters.price,
+          sortBy: filters.sortBy
+        }}
+      />
+
+    }
     </div>
   );
 };
