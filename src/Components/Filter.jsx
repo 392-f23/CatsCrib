@@ -57,9 +57,12 @@ const Filter = ({ closeHandler, onFilterSubmit, initialFilters }) => {
   
         <label>Unit:
           <select value={unit} onChange={e => setUnit(e.target.value)}>
-            <option value="">Select</option>
-            <option value="2br">2br</option>
+            <option value="house">House</option>
             <option value="studio">Studio</option>
+            <option value="1br">1 Bedroom</option>
+            <option value="2br">2 Bedrooms</option>
+            <option value="3br">3 Bedrooms</option>
+            <option value="4br+">4+ Bedrooms</option>
           </select>
         </label>
   
@@ -69,6 +72,7 @@ const Filter = ({ closeHandler, onFilterSubmit, initialFilters }) => {
             value={roommates}
             onChange={e => setRoommates(e.target.value)}
             min="1"
+            max="12"
           />
         </label>
   
