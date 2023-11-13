@@ -7,25 +7,20 @@ import PostingPage from "./PostingPage";
 import { useProfile } from './utilities/profile'; 
 import ProfilePage from './Components/ProfilePage';
 import Footer from "./components/Footer";  
+
 const App = () => {
-  const [{ user, isAdmin, emailVerified }, profileLoading, profileError] = useProfile();
+  const [{ user, isAdmin, emailVerified }, profileError] = useProfile();
+  const [isFavePage, setIsFavePage] = useState(false);
 
-  // Depending on what you want to check for profile validity:
-  const validProfile = user && emailVerified;  // This checks if there's a user and the email is verified
-  
-  if (profileError) return <h1>Error loading profile: {`${profileError}`}</h1>;
-  if (profileLoading) return <h1>Loading user profile</h1>;
-  // if (!validProfile) return <h1>No valid profile data</h1>;
-
-  const [isFavePage, setIsFavePage] = useState(false)
+  const validProfile = user && emailVerified;
 
   const faveHandler = () => {
-    setIsFavePage(true)
-  }
+    setIsFavePage(true);
+  };
 
   const homeHandler = () => {
-    setIsFavePage(false)
-  }
+    setIsFavePage(false);
+  };
 
   return (
     <Router>
@@ -40,3 +35,4 @@ const App = () => {
 };
 
 export default App;
+

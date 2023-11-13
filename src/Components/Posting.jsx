@@ -19,23 +19,23 @@ const Posting = ({ data, index, toggleHeart, isFaved }) => {
   const [heart, setHeart] = useState(isFaved ? "💜" : "🤍");
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////
-  const [geolocation, setGeolocation] = useState({lat: 42.04994, lng: -87.67932});
+  // const [geolocation, setGeolocation] = useState({lat: 42.04994, lng: -87.67932});
   
   //var geocoder = new google.maps.Geocoder();
-  var address = data.address.street + ', ' + data.address.city + ', ' + data.address.state
+  // var address = data.address.street + ', ' + data.address.city + ', ' + data.address.state
  
 
-  setDefaults({
-    key: "", // Your API key here.
-    language: "en", // Default language for responses.
-    region: "es", // Default region for responses.
-  });
+  // setDefaults({
+  //   key: "", // Your API key here.
+  //   language: "en", // Default language for responses.
+  //   region: "es", // Default region for responses.
+  // });
 
-  fromAddress(address)
-  .then(({ results }) => {
-    //setGeolocation({lat: results[0].geometry.location.lat, lng: results[0].geometry.location.lng});
-  })
-  .catch(console.error);
+  // fromAddress(address)
+  // .then(({ results }) => {
+  //   //setGeolocation({lat: results[0].geometry.location.lat, lng: results[0].geometry.location.lng});
+  // })
+  // .catch(console.error);
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -124,7 +124,7 @@ const Posting = ({ data, index, toggleHeart, isFaved }) => {
           </button>
         </div>
         {moreInfo && (
-          <MoreInfo data={data} closeHandler={buttonHandler} latitude={geolocation.lat} longitude={geolocation.lng}></MoreInfo>
+          <MoreInfo data={data} closeHandler={buttonHandler}></MoreInfo>
         )}
       </div>
     </div>

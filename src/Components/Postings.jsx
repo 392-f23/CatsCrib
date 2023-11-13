@@ -28,50 +28,66 @@ const Postings = ({ isFavePage }) => {
 
   // if data exists, set the postings to the dataset
   // everytime data changes or the page reloads the postings is resetted!
-  console.log("filters", filters);
   useEffect(() => {
     if (data) {
-        let filteredPostings = Object.values(data).filter(post => post.category === selectedCategory);
+      let filteredPostings = Object.values(data).filter(
+        (post) => post.category === selectedCategory
+      );
 
-        if (filters.type) {
-            filteredPostings = filteredPostings.filter(post => post.type === filters.type);
-        }
+      if (filters.type) {
+        filteredPostings = filteredPostings.filter(
+          (post) => post.type === filters.type
+        );
+      }
 
-        if (filters.unit) {
-            filteredPostings = filteredPostings.filter(post => post.unit === filters.unit);
-        }
+      if (filters.unit) {
+        filteredPostings = filteredPostings.filter(
+          (post) => post.unit === filters.unit
+        );
+      }
 
-        if (filters.roommates) {
-            filteredPostings = filteredPostings.filter(post => post.roommates === filters.roommates);
-        }
+      if (filters.roommates) {
+        filteredPostings = filteredPostings.filter(
+          (post) => post.roommates === filters.roommates
+        );
+      }
 
-        if (filters.startDate) {
-            filteredPostings = filteredPostings.filter(post => new Date(post.start_date) >= new Date(filters.startDate));
-        }
+      if (filters.startDate) {
+        filteredPostings = filteredPostings.filter(
+          (post) => new Date(post.start_date) >= new Date(filters.startDate)
+        );
+      }
 
-        if (filters.endDate) {
-            filteredPostings = filteredPostings.filter(post => new Date(post.end_date) <= new Date(filters.endDate));
-        }
+      if (filters.endDate) {
+        filteredPostings = filteredPostings.filter(
+          (post) => new Date(post.end_date) <= new Date(filters.endDate)
+        );
+      }
 
-        if (filters.price) {
-            filteredPostings = filteredPostings.filter(post => post.price <= filters.price);
-        }
+      if (filters.price) {
+        filteredPostings = filteredPostings.filter(
+          (post) => post.price <= filters.price
+        );
+      }
 
-        // Sorting
-        if (filters.sortBy === "priceLowToHigh") {
-            filteredPostings.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
-        } else if (filters.sortBy === "priceHighToLow") {
-            filteredPostings.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
-        }
+      // Sorting
+      if (filters.sortBy === "priceLowToHigh") {
+        filteredPostings.sort(
+          (a, b) => parseFloat(a.price) - parseFloat(b.price)
+        );
+      } else if (filters.sortBy === "priceHighToLow") {
+        filteredPostings.sort(
+          (a, b) => parseFloat(b.price) - parseFloat(a.price)
+        );
+      }
 
-        if (isFavePage) {
-            setPostings(faved.filter(post => post.category === selectedCategory));
-        } else {
-            setPostings(filteredPostings);
-        }
+      if (isFavePage) {
+        setPostings(faved.filter((post) => post.category === selectedCategory));
+      } else {
+        setPostings(filteredPostings);
+      }
     }
-}, [data, selectedCategory, isFavePage, faved, filters]);
-
+  }, [data, selectedCategory, isFavePage, faved, filters]);
 
   // function for filter popup on the side
   const filterHandler = () => {
@@ -111,21 +127,21 @@ const Postings = ({ isFavePage }) => {
             isFaved={faved.includes(data)}
           ></Posting>
         ))}
-      {isFiltering && <Filter
-        closeHandler={filterHandler}
-        onFilterSubmit={handleFilterSubmit}
-        initialFilters={{
-          type: filters.type,
-          unit: filters.unit,
-          roommates: filters.roommates,
-          startDate: filters.startDate,
-          endDate: filters.endDate,
-          price: filters.price,
-          sortBy: filters.sortBy
-        }}
-      />
-
-    }
+      {isFiltering && (
+        <Filter
+          closeHandler={filterHandler}
+          onFilterSubmit={handleFilterSubmit}
+          initialFilters={{
+            type: filters.type,
+            unit: filters.unit,
+            roommates: filters.roommates,
+            startDate: filters.startDate,
+            endDate: filters.endDate,
+            price: filters.price,
+            sortBy: filters.sortBy,
+          }}
+        />
+      )}
     </div>
   );
 };
