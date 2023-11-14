@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { render, fireEvent, screen } from "@testing-library/react";
 import '@testing-library/jest-dom';
-import Posting from "./Posting";
-import MoreInfo from "./MoreInfo";
+import Posting from "../components/Posting";
+import MoreInfo from "../components/MoreInfo";
 
 describe("Posting component tests", () => {
   const mockData = {
@@ -46,6 +46,10 @@ describe("Posting component tests", () => {
     const moreInfoButton = screen.getByText(/more info\.\.\./i);
     expect(moreInfoButton).toBeInTheDocument();
 
+    // The More Info text is not shown
+    const noMoreInfoComponent = screen.queryByText('Fake More Info Text');
+    expect(noMoreInfoComponent).toBeNull();
+    
     // Click the More Info button
     fireEvent.click(moreInfoButton);
 
