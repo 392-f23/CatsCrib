@@ -12,16 +12,6 @@ const MoreInfo = ({ data, closeHandler}) => {
     window.location.href = `tel:+${phone}`;
   };
 
-  // const defaultProps = {
-  //   center: {
-  //     lat: latitude,
-  //     lng: longitude,
-  //   },
-  //   zoom: 13,
-  // };
-
-  // const AnyReactComponent = ({ text }) => <div>{text}</div>;
-
   return (
     <div className="overlay" onClick={closeHandler}>
       <div className="popup" onClick={(e) => e.stopPropagation()}>
