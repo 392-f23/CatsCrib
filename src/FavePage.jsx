@@ -1,5 +1,5 @@
 import Header from "./Components/Header";
-import Search from "./components/Search";
+import Search from "./Components/Search";
 import Footer from "./Components/Footer";
 import Postings from "./Components/Postings";
 
