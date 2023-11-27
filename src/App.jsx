@@ -6,7 +6,7 @@ import Home from "./Home";
 import PostingPage from "./PostingPage";
 import { useProfile } from './utilities/profile'; 
 import ProfilePage from './Components/ProfilePage';
-import Footer from "./components/Footer";  
+import Footer from "./Components/Footer";  
 
 const App = () => {
   const [{ user, isAdmin, emailVerified }, profileError] = useProfile();
