@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Footer from "../components/Footer";
+import Footer from "../Components/Footer";
 import '@testing-library/jest-dom';
 import { BrowserRouter } from 'react-router-dom';
 

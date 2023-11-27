@@ -1,6 +1,6 @@
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
-import MakeAPost from "./components/MakeAPost";
+import MakeAPost from "./Components/MakeAPost";
 
 const PostingPage = ({profile}) => {
   return (

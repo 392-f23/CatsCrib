@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { render, fireEvent, screen } from "@testing-library/react";
 import '@testing-library/jest-dom';
-import Posting from "../components/Posting";
-import MoreInfo from "../components/MoreInfo";
+import Posting from "../Components/Posting";
+import MoreInfo from "../Components/MoreInfo";
 
 describe("Posting component tests", () => {
   const mockData = {
